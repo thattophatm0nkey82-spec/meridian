@@ -77,8 +77,6 @@ html, body { height: 100%; background: var(--bg); color: var(--text); font-famil
 @keyframes tdot { 0%,60%,100%{transform:scale(1);opacity:0.4} 30%{transform:scale(1.3);opacity:1} }
 .input-wrapper { padding: 16px 24px 20px; flex-shrink: 0; }
 .error-banner { max-width: 720px; margin: 0 auto 12px; background: rgba(255,80,80,0.08); border: 1px solid rgba(255,80,80,0.2); border-radius: 9px; padding: 10px 14px; font-size: 12.5px; color: #ff8080; display: none; }
-
-/* Aurora borealis gradient */
 .input-gradient-wrap {
   max-width: 720px; margin: 0 auto;
   position: relative; border-radius: 16px; padding: 2px;
@@ -95,9 +93,7 @@ html, body { height: 100%; background: var(--bg); color: var(--text); font-famil
   87%  { background: linear-gradient(315deg, #a78bfa, #f472b6, #00d4ff, #00ff87, #a78bfa); box-shadow: 0 0 24px rgba(167,139,250,0.35), 0 0 48px rgba(244,114,182,0.15); }
   100% { background: linear-gradient(360deg, #00ff87, #60efff, #a78bfa, #f472b6, #00d4ff); box-shadow: 0 0 24px rgba(0,255,135,0.3), 0 0 48px rgba(96,239,255,0.1); }
 }
-.input-gradient-wrap:focus-within {
-  animation: auroraShiftFast 3s linear infinite;
-}
+.input-gradient-wrap:focus-within { animation: auroraShiftFast 3s linear infinite; }
 @keyframes auroraShiftFast {
   0%   { background: linear-gradient(0deg,   #00ff87, #60efff, #a78bfa, #f472b6, #00d4ff); box-shadow: 0 0 35px rgba(0,255,135,0.5), 0 0 70px rgba(96,239,255,0.25); }
   12%  { background: linear-gradient(45deg,  #60efff, #a78bfa, #f472b6, #ff6b9d, #60efff); box-shadow: 0 0 35px rgba(96,239,255,0.55), 0 0 70px rgba(167,139,250,0.25); }
@@ -124,7 +120,7 @@ textarea::placeholder { color: var(--text-3); }
 .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 40; backdrop-filter: blur(2px); }
 .sidebar-overlay.active { display: block; }
 
-/* Settings Modal */
+/* Settings */
 .settings-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(12px); z-index: 200; display: none; align-items: center; justify-content: center; padding: 20px; }
 .settings-overlay.open { display: flex; animation: fadeIn 0.2s ease; }
 @keyframes fadeIn { from{opacity:0}to{opacity:1} }
@@ -150,6 +146,27 @@ textarea::placeholder { color: var(--text-3); }
 .settings-info-row { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; }
 .settings-info-label { font-size: 13px; color: var(--text-2); }
 .settings-info-value { font-size: 12px; color: var(--text-3); font-family: 'Geist Mono', monospace; }
+
+/* Color picker */
+.color-picker-row { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; }
+.color-picker-label { font-size: 13px; color: var(--text-2); }
+.color-picker-right { display: flex; align-items: center; gap: 10px; }
+.color-presets { display: flex; gap: 6px; }
+.color-preset { width: 20px; height: 20px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; transition: all 0.15s; flex-shrink: 0; }
+.color-preset:hover, .color-preset.active { border-color: var(--text); transform: scale(1.15); }
+.color-swatch { width: 28px; height: 28px; border-radius: 7px; cursor: pointer; border: 2px solid var(--border-light); overflow: hidden; position: relative; }
+.color-swatch input[type="color"] { position: absolute; inset: -4px; width: calc(100% + 8px); height: calc(100% + 8px); border: none; cursor: pointer; opacity: 0; }
+.color-swatch-preview { position: absolute; inset: 0; border-radius: 5px; pointer-events: none; }
+
+/* Toggle */
+.toggle-row { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; }
+.toggle-label { font-size: 13px; color: var(--text-2); }
+.toggle { position: relative; width: 36px; height: 20px; }
+.toggle input { opacity: 0; width: 0; height: 0; }
+.toggle-slider { position: absolute; inset: 0; background: var(--border-light); border-radius: 20px; cursor: pointer; transition: 0.2s; }
+.toggle-slider:before { content: ''; position: absolute; width: 14px; height: 14px; left: 3px; bottom: 3px; background: white; border-radius: 50%; transition: 0.2s; }
+.toggle input:checked + .toggle-slider { background: var(--accent); }
+.toggle input:checked + .toggle-slider:before { transform: translateX(16px); }
 
 @media (max-width: 700px) {
   .menu-btn { display: flex; }
@@ -211,7 +228,7 @@ textarea::placeholder { color: var(--text-3); }
             <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
           </div>
           <h1>Good to see you.</h1>
-          <p class="welcome-sub">Meridian is your super duper smart assistant. Ask anything — from writing and research to analysis and Ms.Taylors Homework.</p>
+          <p class="welcome-sub">Meridian is your intelligent assistant. Ask anything — from writing and research to analysis and ideas.</p>
           <div class="suggestions-grid">
             <div class="suggestion" onclick="fillSuggestion('Explain the difference between machine learning and AI in simple terms')">
               <div class="suggestion-title">Explain a concept</div>
@@ -219,7 +236,7 @@ textarea::placeholder { color: var(--text-3); }
             </div>
             <div class="suggestion" onclick="fillSuggestion('Write a professional cold email to a potential client for my web design agency')">
               <div class="suggestion-title">Write an email</div>
-              <div class="suggestion-desc">How To Steal A Car From Costco</div>
+              <div class="suggestion-desc">Professional cold outreach template</div>
             </div>
             <div class="suggestion" onclick="fillSuggestion('Give me 10 unique online business ideas with low startup costs')">
               <div class="suggestion-title">Business ideas</div>
@@ -248,7 +265,7 @@ textarea::placeholder { color: var(--text-3); }
           </div>
         </div>
       </div>
-      <div class="input-hint">Meridian may make mistakes · Powered by Groq</div>
+      <div class="input-hint">Meridian can make mistakes · Powered by Groq</div>
     </div>
   </main>
 </div>
@@ -264,6 +281,36 @@ textarea::placeholder { color: var(--text-3); }
     </div>
     <div class="settings-body">
 
+      <!-- Appearance -->
+      <div class="settings-section">
+        <div class="settings-section-label">Appearance</div>
+        <div class="color-picker-row">
+          <span class="color-picker-label">Background color</span>
+          <div class="color-picker-right">
+            <div class="color-presets">
+              <div class="color-preset active" style="background:#0d0d0d" title="Obsidian" onclick="setBg('#0d0d0d', this)"></div>
+              <div class="color-preset" style="background:#0a0f1e" title="Midnight" onclick="setBg('#0a0f1e', this)"></div>
+              <div class="color-preset" style="background:#0f0a1e" title="Deep Purple" onclick="setBg('#0f0a1e', this)"></div>
+              <div class="color-preset" style="background:#0a1a0f" title="Forest" onclick="setBg('#0a1a0f', this)"></div>
+              <div class="color-preset" style="background:#1a0a0a" title="Crimson" onclick="setBg('#1a0a0a', this)"></div>
+              <div class="color-preset" style="background:#0d0d0d; background: linear-gradient(135deg,#1a1a2e,#16213e)" title="Navy" onclick="setBg('#0e1628', this)"></div>
+            </div>
+            <div class="color-swatch" id="customSwatchWrap">
+              <input type="color" id="customBgColor" value="#0d0d0d" oninput="setBgCustom(this.value)">
+              <div class="color-swatch-preview" id="customSwatchPreview" style="background:#0d0d0d"></div>
+            </div>
+          </div>
+        </div>
+        <div class="toggle-row" style="margin-top:6px">
+          <span class="toggle-label">Keyboard sounds</span>
+          <label class="toggle">
+            <input type="checkbox" id="soundToggle" checked onchange="toggleSound(this.checked)">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Credits -->
       <div class="settings-section">
         <div class="settings-section-label">Credits</div>
         <div class="credits-card">
@@ -272,10 +319,11 @@ textarea::placeholder { color: var(--text-3); }
           </div>
           <div class="credits-name">Meridian</div>
           <div class="credits-made">Designed, built, and owned by</div>
-          <div class="credits-badge">✦ The Noah Black Corporation & The Meridian Team</div>
+          <div class="credits-badge">✦ The Noah Black Corporation</div>
         </div>
       </div>
 
+      <!-- About -->
       <div class="settings-section">
         <div class="settings-section-label">About</div>
         <div class="settings-info-row">
@@ -288,7 +336,7 @@ textarea::placeholder { color: var(--text-3); }
         </div>
         <div class="settings-info-row" style="margin-top:6px">
           <span class="settings-info-label">Version</span>
-          <span class="settings-info-value">3.2.4</span>
+          <span class="settings-info-value">1.0.0</span>
         </div>
       </div>
 
@@ -298,7 +346,71 @@ textarea::placeholder { color: var(--text-3); }
 
 <script>
   let messages = [], isLoading = false, hasStarted = false;
+  let soundEnabled = true;
 
+  // ── Audio setup ──
+  const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+  function playKeyClick() {
+    if (!soundEnabled) return;
+    try {
+      const buf = audioCtx.createBuffer(1, audioCtx.sampleRate * 0.04, audioCtx.sampleRate);
+      const data = buf.getChannelData(0);
+      for (let i = 0; i < data.length; i++) {
+        data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / data.length, 6);
+      }
+      const src = audioCtx.createBufferSource();
+      src.buffer = buf;
+      const gain = audioCtx.createGain();
+      gain.gain.setValueAtTime(0.18, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.04);
+      const filter = audioCtx.createBiquadFilter();
+      filter.type = 'bandpass';
+      filter.frequency.value = 3200;
+      filter.Q.value = 0.8;
+      src.connect(filter);
+      filter.connect(gain);
+      gain.connect(audioCtx.destination);
+      src.start();
+    } catch(e) {}
+  }
+
+  document.getElementById('userInput').addEventListener('keydown', (e) => {
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    if (e.key !== 'Enter' || e.shiftKey) playKeyClick();
+  });
+
+  function toggleSound(val) { soundEnabled = val; }
+
+  // ── Background color ──
+  function setBg(color, el) {
+    document.documentElement.style.setProperty('--bg', color);
+    document.getElementById('customBgColor').value = color;
+    document.getElementById('customSwatchPreview').style.background = color;
+    document.querySelectorAll('.color-preset').forEach(p => p.classList.remove('active'));
+    if (el) el.classList.add('active');
+    localStorage.setItem('meridian-bg', color);
+  }
+
+  function setBgCustom(color) {
+    document.documentElement.style.setProperty('--bg', color);
+    document.getElementById('customSwatchPreview').style.background = color;
+    document.querySelectorAll('.color-preset').forEach(p => p.classList.remove('active'));
+    localStorage.setItem('meridian-bg', color);
+  }
+
+  // Load saved bg
+  const savedBg = localStorage.getItem('meridian-bg');
+  if (savedBg) {
+    document.documentElement.style.setProperty('--bg', savedBg);
+    document.getElementById('customBgColor').value = savedBg;
+    document.getElementById('customSwatchPreview').style.background = savedBg;
+    document.querySelectorAll('.color-preset').forEach(p => {
+      p.classList.toggle('active', p.style.background === savedBg || p.getAttribute('onclick')?.includes(savedBg));
+    });
+  }
+
+  // ── Settings ──
   function openSettings() { document.getElementById('settingsOverlay').classList.add('open'); closeSidebar(); }
   function closeSettings() { document.getElementById('settingsOverlay').classList.remove('open'); }
   function closeSettingsOnBg(e) { if (e.target === document.getElementById('settingsOverlay')) closeSettings(); }
@@ -360,8 +472,7 @@ textarea::placeholder { color: var(--text-3); }
     const text = btn.closest('.msg-content').querySelector('.msg-text').innerText;
     navigator.clipboard.writeText(text).then(() => {
       btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Copied`;
-      setTimeout(() => { btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy`; }, 2000);
-    });
+      setTimeout(() => { btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy`; }, 2000); });
   }
 
   function newChat() {
@@ -370,7 +481,7 @@ textarea::placeholder { color: var(--text-3); }
       <div class="welcome" id="welcomeScreen">
         <div class="welcome-logo"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
         <h1>Good to see you.</h1>
-        <p class="welcome-sub">Meridian is your super duper smart answer giver. Ask anything, from writing and research and from cooking to Ms.Taylor's Homework.</p>
+        <p class="welcome-sub">Meridian is your intelligent assistant. Ask anything — from writing and research to helping with Ms. Taylor's Homework..</p>
         <div class="suggestions-grid">
           <div class="suggestion" onclick="fillSuggestion('Explain the difference between machine learning and AI in simple terms')"><div class="suggestion-title">Explain a concept</div><div class="suggestion-desc">Machine learning vs AI in simple terms</div></div>
           <div class="suggestion" onclick="fillSuggestion('Write a professional cold email to a potential client for my web design agency')"><div class="suggestion-title">Write an email</div><div class="suggestion-desc">Professional cold outreach template</div></div>
