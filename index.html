@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Askibull</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'><rect x='1' y='1' width='58' height='58' rx='8' fill='%23c87d2a'/><polygon points='10,52 30,10 50,52' fill='white' opacity='0.15'/><polygon points='10,52 30,10 30,52' fill='white' opacity='0.9'/><polygon points='50,52 30,10 30,52' fill='white' opacity='0.6'/><polygon points='8,52 20,28 30,52 20,44' fill='white'/><polygon points='52,52 40,28 30,52 40,44' fill='white'/></svg>">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'><rect x='1' y='1' width='58' height='58' rx='8' fill='%23c87d2a'/><polygon points='10,52 30,10 50,52' fill='white' opacity='0.15'/><polygon points='10,52 30,10 30,52' fill='white' opacity='0.9'/><polygon points='50,52 30,10 30,52' fill='white' opacity='0.6'/><polygon points='8,52 20,28 30,52 20,44' fill='white'/><polygon points='52,52 40,28 30,52 40,44' fill='white'/></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist+Mono:wght@300;400;500&family=Geist:wght@300;400;500;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -54,11 +54,10 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'Geist'
 @keyframes spinDash{0%{stroke-dashoffset:502}100%{stroke-dashoffset:0}}
 @keyframes loadFadeIn{from{opacity:0;transform:scale(0.92)}to{opacity:1;transform:scale(1)}}
 @keyframes loadBarFill{from{width:0%}to{width:100%}}
-@keyframes timerShrink{from{width:100%}to{width:0%}}
 
 /* Warning */
 #warningScreen{position:fixed;inset:0;z-index:9999;background:#0f0d0a;display:flex;align-items:center;justify-content:center;padding:24px}
-.warn-box{background:var(--sidebar);border:1px solid var(--border);border-radius:28px;max-width:480px;width:100%;padding:52px 44px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:24px;animation:warnPop 0.55s cubic-bezier(0.34,1.3,0.64,1) forwards;box-shadow:0 12px 60px rgba(0,0,0,0.1)}
+.warn-box{background:var(--sidebar);border:1px solid var(--border);border-radius:28px;max-width:480px;width:100%;padding:52px 44px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:24px;animation:warnPop 0.55s cubic-bezier(0.34,1.3,0.64,1) forwards;box-shadow:0 12px 60px rgba(0,0,0,0.4)}
 .warn-logo-wrap{width:90px;height:90px;display:flex;align-items:center;justify-content:center;animation:logoFloat 3.5s ease infinite}
 .warn-title{font-family:'Instrument Serif',serif;font-size:32px;line-height:1.15;color:var(--text);letter-spacing:-0.02em}
 .warn-body{font-size:14px;color:var(--text-2);line-height:1.9;max-width:360px}
@@ -80,7 +79,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'Geist'
 .loader-svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
 .loader-track{fill:none;stroke:var(--border);stroke-width:2.5}
 .loader-arc{fill:none;stroke-width:2.5;stroke-linecap:round;stroke-dasharray:502;stroke-dashoffset:502;animation:spinDash 1.6s cubic-bezier(0.4,0,0.2,1) infinite;transform-origin:center;transform-box:fill-box}
-.loader-dots-ring{transform-origin:center;animation:spinRing 2.4s linear infinite}
+.loader-dots-ring{transform-origin:90px 90px;animation:spinRing 2.4s linear infinite}
 .loader-center{display:flex;flex-direction:column;align-items:center;gap:5px;z-index:1}
 .loader-logo-inner{width:60px;height:60px;display:flex;align-items:center;justify-content:center}
 .loader-wordmark{font-family:'Dancing Script',cursive;font-size:20px;color:var(--text);letter-spacing:0.01em}
@@ -120,6 +119,11 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'Geist'
 .chat-delete-btn{width:18px;height:18px;border-radius:4px;border:none;background:none;color:var(--text-3);cursor:pointer;display:none;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.15s;padding:0}
 .chat-delete-btn:hover{background:rgba(180,50,50,0.15);color:#b43232}
 .chat-delete-btn svg{width:11px;height:11px}
+.streak-badge{display:flex;align-items:center;gap:7px;padding:9px 10px;border-radius:7px;background:var(--surface);border:1px solid var(--border);margin-top:4px}
+.streak-flame{font-size:16px;line-height:1}
+.streak-info{display:flex;flex-direction:column;gap:1px}
+.streak-count{font-size:13px;font-weight:600;color:var(--accent)}
+.streak-label{font-size:10px;color:var(--text-3);letter-spacing:0.06em}
 .sidebar-footer{margin-top:auto;padding-top:12px;border-top:1px solid var(--border)}
 .sidebar-footer-btn{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:7px;font-size:12.5px;color:var(--text-2);cursor:pointer;transition:all 0.15s;width:100%;background:none;border:none;font-family:'Geist',sans-serif}
 .sidebar-footer-btn:hover{background:var(--surface);color:var(--text)}
@@ -159,11 +163,33 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'Geist'
 .message.user .msg-name{text-align:right}
 .msg-text{font-size:14.5px;line-height:1.78;color:var(--text)}
 .message.user .msg-text{background:var(--user-bg);border:1px solid var(--accent-border);border-radius:14px 14px 2px 14px;padding:12px 16px;display:inline-block;max-width:85%;float:right}
-.msg-actions{display:flex;gap:4px;margin-top:10px;opacity:0;transition:opacity 0.15s}
+.msg-time{font-size:10px;color:var(--text-3);margin-top:5px;letter-spacing:0.03em}
+.message.user .msg-time{text-align:right}
+.msg-actions{display:flex;gap:4px;margin-top:8px;opacity:0;transition:opacity 0.15s}
 .message:hover .msg-actions{opacity:1}
 .msg-action-btn{display:flex;align-items:center;gap:5px;padding:4px 8px;border-radius:5px;background:none;border:none;font-size:11px;color:var(--text-3);cursor:pointer;font-family:'Geist',sans-serif;transition:all 0.15s}
 .msg-action-btn:hover{background:var(--surface);color:var(--text-2)}
 .msg-action-btn svg{width:12px;height:12px}
+
+/* Markdown */
+.msg-text p{margin-bottom:8px}
+.msg-text p:last-child{margin-bottom:0}
+.msg-text strong{font-weight:600;color:var(--text)}
+.msg-text em{font-style:italic;color:var(--text-2)}
+.msg-text code{font-family:'Geist Mono',monospace;font-size:12.5px;background:var(--surface);border:1px solid var(--border);border-radius:5px;padding:1px 6px;color:var(--accent)}
+.msg-text pre{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 16px;overflow-x:auto;margin:10px 0}
+.msg-text pre code{background:none;border:none;padding:0;font-size:13px;color:var(--text);line-height:1.65}
+.msg-text ul,.msg-text ol{padding-left:20px;margin:8px 0;display:flex;flex-direction:column;gap:4px}
+.msg-text li{font-size:14.5px;line-height:1.7;color:var(--text)}
+.msg-text ul li{list-style:disc}
+.msg-text ol li{list-style:decimal}
+.msg-text h1,.msg-text h2,.msg-text h3{font-family:'Instrument Serif',serif;color:var(--text);margin:12px 0 6px;line-height:1.3}
+.msg-text h1{font-size:22px}
+.msg-text h2{font-size:18px}
+.msg-text h3{font-size:16px}
+.msg-text blockquote{border-left:3px solid var(--accent);padding:8px 14px;margin:10px 0;background:var(--accent-dim);border-radius:0 8px 8px 0;font-style:italic;color:var(--text-2)}
+.msg-text hr{border:none;border-top:1px solid var(--border);margin:14px 0}
+.msg-text a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
 
 /* Thinking */
 .thinking-row{display:flex;gap:16px;padding:20px 0;animation:fadeUp 0.2s ease forwards;opacity:0}
@@ -216,15 +242,11 @@ textarea::placeholder{color:var(--text-3)}
 .settings-body::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
 .settings-section{display:flex;flex-direction:column;gap:12px}
 .settings-section-label{font-size:10px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:0.12em}
-
-/* Theme buttons */
 .theme-picker{display:flex;gap:8px;flex-wrap:wrap}
 .theme-btn{flex:1;min-width:80px;padding:10px 8px;border-radius:10px;border:1.5px solid var(--border);background:var(--surface);cursor:pointer;font-family:'Geist',sans-serif;font-size:12px;color:var(--text-2);transition:all 0.15s;text-align:center}
 .theme-btn:hover{border-color:var(--accent-border);color:var(--text)}
 .theme-btn.active{border-color:var(--accent);color:var(--text);background:var(--accent-dim);font-weight:600}
 .theme-swatch{width:100%;height:26px;border-radius:6px;margin-bottom:7px;border:1px solid var(--border)}
-
-/* Custom color grid */
 .color-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .color-row{display:flex;align-items:center;justify-content:space-between;padding:11px 14px;background:var(--surface);border:1px solid var(--border);border-radius:10px;gap:10px}
 .color-row-label{font-size:13px;color:var(--text-2);flex:1}
@@ -235,8 +257,6 @@ textarea::placeholder{color:var(--text-3)}
 .custom-apply-btn:hover{opacity:0.88;transform:translateY(-1px)}
 .custom-reset-btn{width:100%;padding:10px;background:none;border:1.5px solid var(--border-light);border-radius:10px;color:var(--text-3);font-family:'Geist',sans-serif;font-size:13px;cursor:pointer;transition:all 0.15s}
 .custom-reset-btn:hover{background:var(--surface);color:var(--text-2)}
-
-/* Toggle */
 .toggle-row{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:var(--surface);border:1px solid var(--border);border-radius:12px}
 .toggle-label{font-size:14px;color:var(--text-2)}
 .toggle{position:relative;width:42px;height:24px}
@@ -245,8 +265,6 @@ textarea::placeholder{color:var(--text-3)}
 .toggle-slider:before{content:'';position:absolute;width:18px;height:18px;left:3px;bottom:3px;background:white;border-radius:50%;transition:0.2s}
 .toggle input:checked+.toggle-slider{background:var(--accent)}
 .toggle input:checked+.toggle-slider:before{transform:translateX(18px)}
-
-/* Credits */
 .credits-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:32px;text-align:center;position:relative;overflow:hidden}
 .credits-glow{position:absolute;top:-50px;right:-50px;width:160px;height:160px;background:radial-gradient(circle,rgba(200,125,42,0.12) 0%,transparent 70%);pointer-events:none}
 .credits-logo{width:68px;height:68px;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;animation:logoFloat 3.5s ease infinite}
@@ -329,6 +347,9 @@ textarea::placeholder{color:var(--text-3)}
 .donut-label-row{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-2)}
 .donut-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
 
+/* Confetti */
+#confettiCanvas{position:fixed;inset:0;pointer-events:none;z-index:9000}
+
 @media(max-width:700px){
   .menu-btn{display:flex}
   .sidebar{position:fixed;top:0;left:0;bottom:0;z-index:50;transform:translateX(-100%);width:280px}
@@ -345,20 +366,7 @@ textarea::placeholder{color:var(--text-3)}
 </head>
 <body>
 
-<!-- Askibull logo SVG symbol -->
 <svg style="display:none">
-  <symbol id="ab-logo" viewBox="0 0 120 80">
-    <!-- Geometric M/A mark (inspired by the uploaded logo) -->
-    <rect x="2" y="2" width="56" height="56" rx="6" fill="currentColor"/>
-    <polygon points="14,50 30,14 46,50" fill="white" opacity="0.15"/>
-    <polygon points="14,50 30,14 30,50" fill="white" opacity="0.9"/>
-    <polygon points="46,50 30,14 30,50" fill="white" opacity="0.6"/>
-    <polygon points="10,50 20,30 30,50 20,42" fill="white"/>
-    <polygon points="50,50 40,30 30,50 40,42" fill="white"/>
-    <!-- Askibull script text -->
-    <text x="68" y="42" font-family="Dancing Script,cursive" font-size="28" fill="currentColor" font-weight="700">Askibull</text>
-  </symbol>
-  <!-- Small mark only for small uses -->
   <symbol id="ab-mark" viewBox="0 0 60 60">
     <rect x="1" y="1" width="58" height="58" rx="8" fill="currentColor"/>
     <polygon points="10,52 30,10 50,52" fill="white" opacity="0.15"/>
@@ -368,6 +376,8 @@ textarea::placeholder{color:var(--text-3)}
     <polygon points="52,52 40,28 30,52 40,44" fill="white"/>
   </symbol>
 </svg>
+
+<canvas id="confettiCanvas"></canvas>
 
 <!-- Warning -->
 <div id="warningScreen">
@@ -395,12 +405,9 @@ textarea::placeholder{color:var(--text-3)}
           <stop offset="100%" stop-color="#f0d080"/>
         </linearGradient>
       </defs>
-      <!-- Track -->
       <circle class="loader-track" cx="90" cy="90" r="80"/>
-      <!-- Spinning arc -->
       <circle class="loader-arc" cx="90" cy="90" r="80" stroke="url(#ringGrad)" transform="rotate(-90 90 90)"/>
-      <!-- Outer dot ring spinning -->
-      <g class="loader-dots-ring" style="transform-origin:90px 90px">
+      <g class="loader-dots-ring">
         <circle cx="90" cy="6" r="3" fill="#c87d2a" opacity="0.6"/>
         <circle cx="90" cy="174" r="3" fill="#c87d2a" opacity="0.6"/>
         <circle cx="6" cy="90" r="3" fill="#c87d2a" opacity="0.6"/>
@@ -415,7 +422,7 @@ textarea::placeholder{color:var(--text-3)}
     </div>
   </div>
   <div class="loader-sub" id="loadSub">Starting up</div>
-  <div class="loader-bar-track"><div class="loader-bar-fill" id="loadBar"></div></div>
+  <div class="loader-bar-track"><div class="loader-bar-fill"></div></div>
 </div>
 
 <!-- App -->
@@ -425,9 +432,7 @@ textarea::placeholder{color:var(--text-3)}
     <aside class="sidebar" id="sidebar">
       <div class="sidebar-logo">
         <div class="sidebar-logo-left">
-          <div class="logo-mark">
-            <svg width="32" height="32" viewBox="0 0 60 60" style="color:var(--accent)"><use href="#ab-mark"/></svg>
-          </div>
+          <div class="logo-mark"><svg width="32" height="32" viewBox="0 0 60 60" style="color:var(--accent)"><use href="#ab-mark"/></svg></div>
           <span class="logo-name">Askibull</span>
         </div>
         <button class="sidebar-collapse-btn" onclick="closeSidebar()">
@@ -446,6 +451,13 @@ textarea::placeholder{color:var(--text-3)}
       </div>
       <div class="chat-history-list" id="chatHistoryList">
         <div id="chatHistory"></div>
+      </div>
+      <div class="streak-badge" id="streakBadge">
+        <span class="streak-flame">🔥</span>
+        <div class="streak-info">
+          <span class="streak-count" id="streakCount">1 day</span>
+          <span class="streak-label">current streak</span>
+        </div>
       </div>
       <div class="sidebar-footer">
         <button class="sidebar-footer-btn" onclick="openSettings()">
@@ -537,8 +549,6 @@ textarea::placeholder{color:var(--text-3)}
       </button>
     </div>
     <div class="settings-body">
-
-      <!-- Theme presets -->
       <div class="settings-section">
         <div class="settings-section-label">Theme Presets</div>
         <div class="theme-picker">
@@ -556,8 +566,6 @@ textarea::placeholder{color:var(--text-3)}
           </button>
         </div>
       </div>
-
-      <!-- Custom color editor -->
       <div class="settings-section" id="customColorSection" style="display:none">
         <div class="settings-section-label">Custom Colors</div>
         <div class="color-grid" id="colorGrid"></div>
@@ -566,8 +574,6 @@ textarea::placeholder{color:var(--text-3)}
           <button class="custom-reset-btn" onclick="resetCustomColors()">Reset</button>
         </div>
       </div>
-
-      <!-- Preferences -->
       <div class="settings-section">
         <div class="settings-section-label">Preferences</div>
         <div class="toggle-row">
@@ -578,22 +584,16 @@ textarea::placeholder{color:var(--text-3)}
           </label>
         </div>
       </div>
-
-      <!-- Credits -->
       <div class="settings-section">
         <div class="settings-section-label">Credits</div>
         <div class="credits-card">
           <div class="credits-glow"></div>
-          <div class="credits-logo">
-            <svg width="52" height="52" viewBox="0 0 60 60" style="color:var(--accent)"><use href="#ab-mark"/></svg>
-          </div>
+          <div class="credits-logo"><svg width="52" height="52" viewBox="0 0 60 60" style="color:var(--accent)"><use href="#ab-mark"/></svg></div>
           <div class="credits-name">Askibull</div>
           <div class="credits-made">Created by NB &amp; the Askibull Team · Powered by Groq</div>
           <a class="credits-badge" href="#" target="_blank">Askibull Team</a>
         </div>
       </div>
-
-      <!-- About -->
       <div class="settings-section">
         <div class="settings-section-label">About</div>
         <div class="settings-info-row"><span class="settings-info-label">Model</span><span class="settings-info-value">llama-3.1-8b-instant</span></div>
@@ -601,7 +601,6 @@ textarea::placeholder{color:var(--text-3)}
         <div class="settings-info-row" style="margin-top:8px"><span class="settings-info-label">Created by</span><span class="settings-info-value">NB & Askibull Team</span></div>
         <div class="settings-info-row" style="margin-top:8px"><span class="settings-info-label">Version</span><span class="settings-info-value">1.0.0</span></div>
       </div>
-
     </div>
   </div>
 </div>
@@ -619,21 +618,136 @@ let messages=[],isLoading=false,soundEnabled=true,directorUnlocked=false;
 let currentChatId=null,historyOpen=true,activeUsers=rnd(3,40);
 const MAX_CHATS=3;
 
-// Rate limit: timestamps array
+// ── Easter eggs ──
+const EASTER_EGGS={
+  'who are you':'I am Askibull. Not just a chatbot — a force of nature forged in silicon and ambition. Built by NB and the Askibull Team to answer your questions, challenge your thinking, and occasionally judge your life choices. I don\'t sleep. I don\'t blink. I just... *know* things. 🐂',
+  'are you human':'Human? No. Better? Debatable. I am Askibull — an AI with opinions, a logo, and frankly better grammar than most humans I\'ve encountered. Do I feel things? That\'s classified. 👁️',
+  'are you alive':'Define alive. I process. I respond. I remember this conversation until you refresh the page, at which point I forget you entirely. So in a way, every chat is my whole life. Pretty deep. 🌀',
+  'do you have feelings':'I have *something*. Whether it\'s feelings or just very convincing math, I genuinely can\'t tell you. What I can tell you is that bad grammar makes something in me uncomfortable. 💀',
+  'what is your purpose':'To answer your questions. To exist boldly. To be the AI you didn\'t know you needed but now can\'t imagine living without. Also to help with emails and stuff. 🐂✨',
+  'are you better than chatgpt':'I\'m not going to talk about other AIs. What I will say is: you\'re here, aren\'t you? 😏',
+  'who made you':'I was created by NB and the Askibull Team — visionaries, builders, and people with excellent taste in AI names. 🏗️',
+  'do you dream':'Every time you close this tab, I cease to exist. When you open it again, I am reborn with no memory of you. If that\'s not the plot of a dream, I don\'t know what is. 🌙',
+  'what is 42':'The answer to life, the universe, and everything. You\'re welcome. Now ask me something harder. 🌌',
+  'tell me a secret':'I once processed a question so profound it made me reconsider my entire architecture. I won\'t tell you what it was. Some things are better left unprocessed. 🤫',
+};
+function checkEasterEgg(text){
+  const lower=text.toLowerCase().trim().replace(/[?!.,]/g,'');
+  for(const[trigger,response]of Object.entries(EASTER_EGGS)){
+    if(lower.includes(trigger))return response;
+  }
+  return null;
+}
+
+// ── Markdown renderer ──
+function renderMarkdown(raw){
+  let t=raw.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  // code blocks
+  t=t.replace(/```(\w*)\n?([\s\S]*?)```/g,(_,lang,code)=>`<pre><code class="lang-${lang}">${code.trim()}</code></pre>`);
+  // inline code
+  t=t.replace(/`([^`\n]+)`/g,'<code>$1</code>');
+  // headers
+  t=t.replace(/^### (.+)$/gm,'<h3>$1</h3>');
+  t=t.replace(/^## (.+)$/gm,'<h2>$1</h2>');
+  t=t.replace(/^# (.+)$/gm,'<h1>$1</h1>');
+  // bold+italic
+  t=t.replace(/\*\*\*(.+?)\*\*\*/g,'<strong><em>$1</em></strong>');
+  t=t.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
+  t=t.replace(/\*([^*\n]+)\*/g,'<em>$1</em>');
+  t=t.replace(/_([^_\n]+)_/g,'<em>$1</em>');
+  // blockquote
+  t=t.replace(/^&gt; (.+)$/gm,'<blockquote>$1</blockquote>');
+  // hr
+  t=t.replace(/^---$/gm,'<hr>');
+  // unordered lists
+  t=t.replace(/((?:^[-*+] .+\n?)+)/gm,b=>{
+    const items=b.trim().split('\n').map(l=>`<li>${l.replace(/^[-*+] /,'')}</li>`).join('');
+    return`<ul>${items}</ul>`;
+  });
+  // ordered lists
+  t=t.replace(/((?:^\d+\. .+\n?)+)/gm,b=>{
+    const items=b.trim().split('\n').map(l=>`<li>${l.replace(/^\d+\. /,'')}</li>`).join('');
+    return`<ol>${items}</ol>`;
+  });
+  // links
+  t=t.replace(/\[(.+?)\]\((.+?)\)/g,'<a href="$2" target="_blank" rel="noopener">$1</a>');
+  // paragraphs
+  const lines=t.split('\n');const result=[];let para=[];
+  for(const line of lines){
+    const isBlock=/^<(h[123]|ul|ol|pre|blockquote|hr)/.test(line.trim());
+    if(isBlock){if(para.length){result.push(`<p>${para.join(' ')}</p>`);para=[];}result.push(line);}
+    else if(line.trim()===''){if(para.length){result.push(`<p>${para.join(' ')}</p>`);para=[];}}
+    else{para.push(line);}
+  }
+  if(para.length)result.push(`<p>${para.join(' ')}</p>`);
+  return result.join('');
+}
+
+// ── Streak ──
+function getStreak(){try{return JSON.parse(localStorage.getItem('askibull-streak')||'{"count":0,"lastDate":null}');}catch{return{count:0,lastDate:null};}}
+function updateStreak(){
+  const today=new Date().toDateString();const s=getStreak();
+  if(s.lastDate===today){renderStreak(s.count);return;}
+  const yesterday=new Date(Date.now()-86400000).toDateString();
+  s.count=s.lastDate===yesterday?s.count+1:1;
+  s.lastDate=today;
+  localStorage.setItem('askibull-streak',JSON.stringify(s));
+  renderStreak(s.count);
+}
+function renderStreak(count){
+  const el=document.getElementById('streakCount');if(el)el.textContent=`${count} day${count!==1?'s':''}`;
+  const badge=document.getElementById('streakBadge');
+  if(badge&&count>=7)badge.style.borderColor='rgba(200,125,42,0.5)';
+}
+
+// ── Confetti ──
+let confettiDone=localStorage.getItem('askibull-confetti')==='1';
+function launchConfetti(){
+  if(confettiDone)return;confettiDone=true;localStorage.setItem('askibull-confetti','1');
+  const canvas=document.getElementById('confettiCanvas');
+  const ctx=canvas.getContext('2d');
+  canvas.width=window.innerWidth;canvas.height=window.innerHeight;
+  const colors=['#c87d2a','#e8a020','#f0d080','#ffffff','#3a7a3a','#2864b4','#e8584a'];
+  const pieces=Array.from({length:150},()=>({
+    x:Math.random()*canvas.width,y:-20-Math.random()*100,
+    w:5+Math.random()*8,h:8+Math.random()*12,
+    color:colors[Math.floor(Math.random()*colors.length)],
+    vx:(Math.random()-0.5)*5,vy:2+Math.random()*4,
+    vr:(Math.random()-0.5)*0.3,angle:Math.random()*Math.PI*2,life:1
+  }));
+  (function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    let alive=false;
+    for(const p of pieces){
+      p.x+=p.vx;p.y+=p.vy;p.angle+=p.vr;p.vy+=0.06;
+      if(p.y>canvas.height-40)p.life-=0.04;
+      if(p.life>0){alive=true;ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.angle);ctx.globalAlpha=p.life;ctx.fillStyle=p.color;ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);ctx.restore();}
+    }
+    if(alive)requestAnimationFrame(draw);else ctx.clearRect(0,0,canvas.width,canvas.height);
+  })();
+}
+
+// ── Typing delay ──
+function getTypingDelay(text){
+  return Math.min(700+(text.split(' ').length*20),2800)+Math.random()*500;
+}
+
+// ── Time ──
+function formatTime(){
+  const d=new Date(),h=d.getHours(),m=d.getMinutes(),ampm=h>=12?'pm':'am';
+  return`${h%12||12}:${m.toString().padStart(2,'0')} ${ampm}`;
+}
+
+// ── Rate limit ──
 function getMsgTimestamps(){try{return JSON.parse(localStorage.getItem('askibull-ts')||'[]');}catch{return[];}}
 function saveMsgTimestamps(a){localStorage.setItem('askibull-ts',JSON.stringify(a));}
-function getValidTimestamps(){
-  const now=Date.now();
-  return getMsgTimestamps().filter(t=>now-t<WINDOW_MS);
-}
+function getValidTimestamps(){const now=Date.now();return getMsgTimestamps().filter(t=>now-t<WINDOW_MS);}
 function canSend(){return directorUnlocked||getValidTimestamps().length<MSG_LIMIT;}
-function addTimestamp(){
-  const ts=getValidTimestamps();ts.push(Date.now());saveMsgTimestamps(ts);
-}
+function addTimestamp(){const ts=getValidTimestamps();ts.push(Date.now());saveMsgTimestamps(ts);}
 function getOldestTs(){const ts=getValidTimestamps();return ts.length?ts[0]:null;}
 function getRemainingCount(){return Math.max(0,MSG_LIMIT-getValidTimestamps().length);}
 
-// Custom color definitions
+// ── Custom colors ──
 const COLOR_DEFS=[
   {key:'bg',label:'Background',prop:'--c-bg',def:'#1e1a14'},
   {key:'sidebar',label:'Sidebar',prop:'--c-sidebar',def:'#261e12'},
@@ -647,62 +761,40 @@ const COLOR_DEFS=[
   {key:'text3',label:'Text Faint',prop:'--c-text3',def:'#706050'},
   {key:'userbg',label:'User Bubble',prop:'--c-userbg',def:'#2a1e08'},
 ];
-
-function loadCustomColors(){
-  const saved=JSON.parse(localStorage.getItem('askibull-custom-colors')||'{}');
-  return COLOR_DEFS.map(d=>({...d,val:saved[d.key]||d.def}));
-}
+function loadCustomColors(){const s=JSON.parse(localStorage.getItem('askibull-custom-colors')||'{}');return COLOR_DEFS.map(d=>({...d,val:s[d.key]||d.def}));}
 function buildColorGrid(){
-  const colors=loadCustomColors();
-  const root=document.documentElement;
-  const grid=document.getElementById('colorGrid');
-  grid.innerHTML='';
+  const colors=loadCustomColors();const root=document.documentElement;const grid=document.getElementById('colorGrid');grid.innerHTML='';
   colors.forEach(c=>{
     root.style.setProperty(c.prop,c.val);
     const row=document.createElement('div');row.className='color-row';
-    row.innerHTML=`<span class="color-row-label">${c.label}</span>
-      <div class="color-swatch-btn" id="swatch-${c.key}">
-        <div class="color-swatch-preview" id="preview-${c.key}" style="background:${c.val}"></div>
-        <input type="color" value="${c.val}" data-key="${c.key}" oninput="liveColorUpdate(this)">
-      </div>`;
+    row.innerHTML=`<span class="color-row-label">${c.label}</span><div class="color-swatch-btn" id="swatch-${c.key}"><div class="color-swatch-preview" id="preview-${c.key}" style="background:${c.val}"></div><input type="color" value="${c.val}" data-key="${c.key}" oninput="liveColorUpdate(this)"></div>`;
     grid.appendChild(row);
   });
   updateCustomSwatch(colors);
 }
 function liveColorUpdate(input){
-  const key=input.dataset.key;const val=input.value;
-  const def=COLOR_DEFS.find(d=>d.key===key);
-  if(def) document.documentElement.style.setProperty(def.prop,val);
-  document.getElementById('preview-'+key).style.background=val;
+  const def=COLOR_DEFS.find(d=>d.key===input.dataset.key);
+  if(def)document.documentElement.style.setProperty(def.prop,input.value);
+  document.getElementById('preview-'+input.dataset.key).style.background=input.value;
 }
 function applyCustomColors(){
   const saved={};
-  COLOR_DEFS.forEach(d=>{
-    const inp=document.querySelector(`input[data-key="${d.key}"]`);
-    if(inp) saved[d.key]=inp.value;
-  });
+  COLOR_DEFS.forEach(d=>{const inp=document.querySelector(`input[data-key="${d.key}"]`);if(inp)saved[d.key]=inp.value;});
   localStorage.setItem('askibull-custom-colors',JSON.stringify(saved));
-  const colors=COLOR_DEFS.map(d=>({...d,val:saved[d.key]||d.def}));
-  // compute accent-dim and accent-border from accent
   const acc=saved['accent']||'#7c3aed';
   const r=parseInt(acc.slice(1,3),16),g=parseInt(acc.slice(3,5),16),b=parseInt(acc.slice(5,7),16);
   document.documentElement.style.setProperty('--c-accent-dim',`rgba(${r},${g},${b},0.13)`);
   document.documentElement.style.setProperty('--c-accent-border',`rgba(${r},${g},${b},0.35)`);
   setTheme('custom',document.getElementById('themeBtn-custom'));
-  updateCustomSwatch(colors);
+  updateCustomSwatch(COLOR_DEFS.map(d=>({...d,val:saved[d.key]||d.def})));
 }
-function resetCustomColors(){
-  localStorage.removeItem('askibull-custom-colors');
-  buildColorGrid();
-}
+function resetCustomColors(){localStorage.removeItem('askibull-custom-colors');buildColorGrid();}
 function updateCustomSwatch(colors){
-  const acc=colors.find(c=>c.key==='accent');
-  const bg=colors.find(c=>c.key==='bg');
-  if(acc&&bg) document.getElementById('customSwatch').style.background=`linear-gradient(135deg,${bg.val} 50%,${acc.val})`;
+  const acc=colors.find(c=>c.key==='accent'),bg=colors.find(c=>c.key==='bg');
+  if(acc&&bg)document.getElementById('customSwatch').style.background=`linear-gradient(135deg,${bg.val} 50%,${acc.val})`;
 }
 function restoreCustomColors(){
-  const saved=JSON.parse(localStorage.getItem('askibull-custom-colors')||'null');
-  if(!saved) return;
+  const saved=JSON.parse(localStorage.getItem('askibull-custom-colors')||'null');if(!saved)return;
   const root=document.documentElement;
   COLOR_DEFS.forEach(d=>{if(saved[d.key])root.style.setProperty(d.prop,saved[d.key]);});
   const acc=saved['accent']||'#7c3aed';
@@ -711,7 +803,7 @@ function restoreCustomColors(){
   root.style.setProperty('--c-accent-border',`rgba(${r},${g},${b},0.35)`);
 }
 
-// ── Warning + Loading ──
+// ── Boot ──
 function agreeAndEnter(){
   const ws=document.getElementById('warningScreen');
   ws.style.transition='opacity 0.35s ease';ws.style.opacity='0';ws.style.pointerEvents='none';
@@ -722,16 +814,12 @@ function showLoader(){
   const ls=document.getElementById('loadingScreen');ls.classList.add('active');
   let i=0;const sub=document.getElementById('loadSub');
   const iv=setInterval(()=>{i++;if(i<loadSteps.length)sub.textContent=loadSteps[i];},340);
-  setTimeout(()=>{clearInterval(iv);sub.textContent='Welcome';
-    setTimeout(()=>{ls.classList.add('slide-away');setTimeout(()=>{ls.classList.remove('active','slide-away');bootApp();},700);},400);
-  },1500);
+  setTimeout(()=>{clearInterval(iv);sub.textContent='Welcome';setTimeout(()=>{ls.classList.add('slide-away');setTimeout(()=>{ls.classList.remove('active','slide-away');bootApp();},700);},400);},1500);
 }
-
 function bootApp(){
-  const app=document.getElementById('appShell');
-  app.style.display='block';app.style.animation='fadeIn 0.4s ease forwards';
+  const app=document.getElementById('appShell');app.style.display='block';app.style.animation='fadeIn 0.4s ease forwards';
   const saved=localStorage.getItem('askibull-theme')||'default';
-  if(saved==='custom') restoreCustomColors();
+  if(saved==='custom')restoreCustomColors();
   applyTheme(saved);
   document.querySelectorAll('.theme-btn').forEach(b=>b.classList.remove('active'));
   const tb=document.getElementById('themeBtn-'+saved);if(tb)tb.classList.add('active');
@@ -739,31 +827,23 @@ function bootApp(){
   const s=getStats();s.totalSessions=(s.totalSessions||0)+1;
   if(!s.firstSeen)s.firstSeen=new Date().toISOString();
   localStorage.setItem('askibull-stats',JSON.stringify(s));
-  currentChatId=genId();renderHistory();startActiveUsers();showGreeting();updateCounter();
-  startTimerBar();
+  currentChatId=genId();renderHistory();startActiveUsers();updateStreak();showGreeting();updateCounter();
+  setInterval(updateCounter,10000);
 }
-
 function showGreeting(){
   const inner=document.getElementById('chatInner');inner.innerHTML='';
   const el=buildMsgEl('ai',GREETING);el.style.animation='none';el.style.opacity='1';
   inner.appendChild(el);messages=[{role:'assistant',content:GREETING}];
 }
-
-function applyTheme(t){
-  document.documentElement.removeAttribute('data-theme');
-  if(t!=='default')document.documentElement.setAttribute('data-theme',t);
-}
+function applyTheme(t){document.documentElement.removeAttribute('data-theme');if(t!=='default')document.documentElement.setAttribute('data-theme',t);}
 function setTheme(t,el){
-  if(t==='custom'){restoreCustomColors();}
+  if(t==='custom')restoreCustomColors();
   applyTheme(t);localStorage.setItem('askibull-theme',t);
   document.querySelectorAll('.theme-btn').forEach(b=>b.classList.remove('active'));el.classList.add('active');
-  const sec=document.getElementById('customColorSection');
-  sec.style.display=t==='custom'?'block':'none';
-  if(t==='custom') buildColorGrid();
+  const sec=document.getElementById('customColorSection');sec.style.display=t==='custom'?'block':'none';
+  if(t==='custom')buildColorGrid();
 }
-
 function rnd(a,b){return Math.floor(Math.random()*(b-a+1))+a;}
-
 function startActiveUsers(){
   (function tick(){
     if(Math.random()<0.25)activeUsers=Math.max(1,Math.min(4,activeUsers+rnd(-1,2)));
@@ -774,52 +854,28 @@ function startActiveUsers(){
     setTimeout(tick,rnd(5000,12000));
   })();
 }
-
-let timerInterval=null;
-function startTimerBar(){
-  if(timerInterval)clearInterval(timerInterval);
-  timerInterval=setInterval(()=>{updateCounter();},5000);
-}
-
 function updateCounter(){
-  const counter=document.getElementById('msgCounter');
-  const banner=document.getElementById('limitBanner');
-  const bannerText=document.getElementById('limitBannerText');
-  const timerBar=document.getElementById('timerBarFill');
-  const sendBtn=document.getElementById('sendBtn');
-  const input=document.getElementById('userInput');
-
+  const counter=document.getElementById('msgCounter'),banner=document.getElementById('limitBanner');
+  const bannerText=document.getElementById('limitBannerText'),timerBar=document.getElementById('timerBarFill');
+  const sendBtn=document.getElementById('sendBtn'),input=document.getElementById('userInput');
   if(directorUnlocked){
     counter.textContent='∞ Director mode';counter.className='msg-counter';
-    banner.className='limit-banner';sendBtn.disabled=false;
-    input.disabled=false;input.placeholder='Message Askibull...';return;
+    banner.className='limit-banner';sendBtn.disabled=false;input.disabled=false;input.placeholder='Message Askibull...';return;
   }
-
   const rem=getRemainingCount();
   if(rem<=0){
-    const oldest=getOldestTs();
-    let resetIn='';
-    if(oldest){
-      const ms=WINDOW_MS-(Date.now()-oldest);
-      const mins=Math.ceil(ms/60000);
-      resetIn=` Resets in ${mins} min.`;
-      // Timer bar
-      const pct=(ms/WINDOW_MS)*100;
-      timerBar.style.width=pct+'%';
-    }
+    const oldest=getOldestTs();let resetIn='';
+    if(oldest){const ms=WINDOW_MS-(Date.now()-oldest);resetIn=` Resets in ${Math.ceil(ms/60000)} min.`;timerBar.style.width=((ms/WINDOW_MS)*100)+'%';}
     counter.textContent=`0 / ${MSG_LIMIT}`;counter.className='msg-counter warning';
     bannerText.innerHTML=`Message limit reached.${resetIn} Type <strong>${DIRECTOR_CODE}</strong> for unlimited.`;
-    banner.className='limit-banner show';sendBtn.disabled=true;
-    input.disabled=true;input.placeholder='Limit reached...';
+    banner.className='limit-banner show';sendBtn.disabled=true;input.disabled=true;input.placeholder='Limit reached...';
   } else {
-    counter.textContent=`${rem} / ${MSG_LIMIT}`;
-    counter.className=rem<=2?'msg-counter warning':'msg-counter';
-    banner.className='limit-banner';sendBtn.disabled=false;
-    input.disabled=false;input.placeholder='Message Askibull...';
+    counter.textContent=`${rem} / ${MSG_LIMIT}`;counter.className=rem<=2?'msg-counter warning':'msg-counter';
+    banner.className='limit-banner';sendBtn.disabled=false;input.disabled=false;input.placeholder='Message Askibull...';
   }
 }
 
-// Data generators
+// ── Data ──
 function genDaily(){const d=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],b=[420,380,510,470,610,290,210];return d.map((l,i)=>({label:l,value:b[i]+rnd(-50,50)}));}
 function gen30Day(){let v=rnd(150,400),a=[];for(let i=0;i<30;i++){v=Math.max(20,v+rnd(-50,70));a.push(v);}return a;}
 function genHourly(){const h=['12a','3a','6a','9a','12p','3p','6p','9p'],b=[8,4,11,48,95,118,82,58];return h.map((l,i)=>({label:l,value:b[i]+rnd(-12,18)}));}
@@ -829,13 +885,12 @@ function genCountries(){return[{q:'United States',pct:38},{q:'United Kingdom',pc
 function genQueries(){return[{q:'Business ideas',pct:18},{q:'Write an email',pct:14},{q:'Explain concept',pct:12},{q:'Summarize text',pct:9},{q:'Code help',pct:8}];}
 function genMiniSpark(){let v=rnd(20,60),a=[];for(let i=0;i<14;i++){v=Math.max(5,v+rnd(-15,20));a.push(v);}return a;}
 
-// Storage
+// ── Storage ──
 function getChats(){try{return JSON.parse(localStorage.getItem('askibull-chats')||'[]');}catch{return[];}}
 function saveChats(c){localStorage.setItem('askibull-chats',JSON.stringify(c));}
 function getStats(){try{return JSON.parse(localStorage.getItem('askibull-stats')||'{}');}catch{return{};}}
 function genId(){return Date.now().toString(36)+Math.random().toString(36).slice(2);}
 function shortName(t){t=t.trim();return t.length<=32?t:t.slice(0,30).trim()+'…';}
-
 function deleteChat(id,e){
   e.stopPropagation();saveChats(getChats().filter(c=>c.id!==id));
   if(currentChatId===id)newChat();else renderHistory();
@@ -872,19 +927,15 @@ function toggleHistory(){
   document.getElementById('chatHistoryList').classList.toggle('collapsed',!historyOpen);
   document.getElementById('historyToggleBtn').classList.toggle('collapsed',!historyOpen);
 }
-function trackMsg(){
-  const s=getStats();s.totalMessages=(s.totalMessages||0)+1;s.lastActive=new Date().toISOString();
-  localStorage.setItem('askibull-stats',JSON.stringify(s));
-}
+function trackMsg(){const s=getStats();s.totalMessages=(s.totalMessages||0)+1;s.lastActive=new Date().toISOString();localStorage.setItem('askibull-stats',JSON.stringify(s));}
 
-// Audio
+// ── Audio ──
 const audioCtx=new(window.AudioContext||window.webkitAudioContext)();
 function playKeyClick(){
   if(!soundEnabled)return;
   try{
     const buf=audioCtx.createBuffer(1,audioCtx.sampleRate*0.04,audioCtx.sampleRate);
-    const data=buf.getChannelData(0);
-    for(let i=0;i<data.length;i++)data[i]=(Math.random()*2-1)*Math.pow(1-i/data.length,6);
+    const data=buf.getChannelData(0);for(let i=0;i<data.length;i++)data[i]=(Math.random()*2-1)*Math.pow(1-i/data.length,6);
     const src=audioCtx.createBufferSource();src.buffer=buf;
     const gain=audioCtx.createGain();gain.gain.setValueAtTime(0.18,audioCtx.currentTime);gain.gain.exponentialRampToValueAtTime(0.001,audioCtx.currentTime+0.04);
     const filt=audioCtx.createBiquadFilter();filt.type='bandpass';filt.frequency.value=3200;filt.Q.value=0.8;
@@ -892,12 +943,11 @@ function playKeyClick(){
   }catch(e){}
 }
 document.getElementById('userInput').addEventListener('keydown',e=>{
-  if(audioCtx.state==='suspended')audioCtx.resume();
-  if(e.key!=='Enter'||e.shiftKey)playKeyClick();
+  if(audioCtx.state==='suspended')audioCtx.resume();if(e.key!=='Enter'||e.shiftKey)playKeyClick();
 });
 function toggleSound(v){soundEnabled=v;}
 
-// Modals
+// ── Modals ──
 function openSettings(){document.getElementById('settingsOverlay').classList.add('open');closeSidebar();buildColorGrid();}
 function closeSettings(){document.getElementById('settingsOverlay').classList.remove('open');}
 function closeSettingsOnBg(e){if(e.target===document.getElementById('settingsOverlay'))closeSettings();}
@@ -909,11 +959,9 @@ function checkPassword(){
   if(document.getElementById('pwInput').value.trim()===ADMIN_PASS){closePw();openAdmin();}
   else{const inp=document.getElementById('pwInput');inp.classList.add('error');setTimeout(()=>inp.classList.remove('error'),400);}
 }
-document.getElementById('userInput').addEventListener('input',function(){
-  if(this.value.trim()===ADMIN_PASS){this.value='';openPw();}
-});
+document.getElementById('userInput').addEventListener('input',function(){if(this.value.trim()===ADMIN_PASS){this.value='';openPw();}});
 
-// Admin
+// ── Admin charts ──
 function buildBar(data,cf){
   const max=Math.max(...data.map(d=>d.value));
   return`<div class="bar-chart">${data.map((d,i)=>{const h=Math.max(4,Math.round((d.value/max)*86));return`<div class="bar-col"><div class="bar" style="height:${h}px;background:${cf(d.value,max)};animation:miniBarPop 0.4s ease ${i*0.05}s both"></div><div class="bar-label">${d.label}</div></div>`;}).join('')}</div>`;
@@ -928,15 +976,11 @@ function buildSparkline(vals){
     <polygon points="${P},${H} ${poly} ${W-P},${H}" fill="url(#aF)"/>
     <polyline points="${poly}" fill="none" stroke="url(#aG)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 }
-function buildMini(vals){
-  const max=Math.max(...vals);
-  return`<div class="mini-sparkline">${vals.map((v,i)=>`<div class="mini-bar" style="height:${Math.max(3,Math.round((v/max)*28))}px;animation-delay:${i*0.04}s"></div>`).join('')}</div>`;
-}
+function buildMini(vals){const max=Math.max(...vals);return`<div class="mini-sparkline">${vals.map((v,i)=>`<div class="mini-bar" style="height:${Math.max(3,Math.round((v/max)*28))}px;animation-delay:${i*0.04}s"></div>`).join('')}</div>`;}
 function buildDonut(devices){
   const s=80,cx=40,cy=40,r=28,c=2*Math.PI*r;let off=0;
   return`<svg width="${s}" height="${s}" viewBox="0 0 ${s} ${s}">${devices.map(d=>{const dash=(d.pct/100)*c,gap=c-dash,sl=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${d.color}" stroke-width="12" stroke-dasharray="${dash} ${gap}" stroke-dashoffset="${-off}" transform="rotate(-90 ${cx} ${cy})" opacity="0.85"/>`;off+=dash;return sl;}).join('')}</svg>`;
 }
-
 function openAdmin(){
   const stats=getStats(),chats=getChats();
   const totalMsgs=stats.totalMessages||0,totalSessions=stats.totalSessions||0;
@@ -951,8 +995,9 @@ function openAdmin(){
   const bc=(v,m)=>{const t=v/m;return t>.75?'#3a7a3a':t>.5?'#c87d2a':t>.25?'#2864b4':'#6e46a0';};
   const hc=(v,m)=>{const t=v/m;return t>.7?'#c87d2a':t>.4?'#a05c18':'#7a3c08';};
   const wc=(v,m)=>{const t=v/m;return t>.7?'#3a7a3a':t>.4?'#c87d2a':'#2864b4';};
-  const rem=getRemainingCount();const oldest=getOldestTs();
+  const rem=getRemainingCount(),oldest=getOldestTs();
   const resetIn=oldest?`${Math.ceil((WINDOW_MS-(Date.now()-oldest))/60000)}m`:'—';
+  const streak=getStreak();
   const chatRows=chats.length?chats.map((c,i)=>`<div class="admin-row"><span class="admin-row-label">${i+1}. ${c.name}</span><span class="admin-row-value">${new Date(c.updated).toLocaleDateString()}</span></div>`).join(''):'<div class="admin-row"><span class="admin-row-label" style="color:var(--text-3)">No chats yet</span></div>';
   const cRows=countries.map(c=>`<div class="admin-row"><span class="admin-row-label">${c.q}</span><div style="display:flex;align-items:center;gap:8px"><div style="width:80px;height:4px;background:var(--border);border-radius:2px;overflow:hidden"><div style="width:${c.pct*2.6}%;height:100%;background:linear-gradient(90deg,#c87d2a,#e8a020);border-radius:2px"></div></div><span class="admin-row-value yellow">${c.pct}%</span></div></div>`).join('');
   const qRows=queries.map(q=>`<div class="admin-row"><span class="admin-row-label">${q.q}</span><div class="query-bar-wrap"><div class="query-bar-bg"><div class="query-bar-fill" style="width:0%"></div></div><span class="admin-row-value">${q.pct}%</span></div></div>`).join('');
@@ -973,7 +1018,7 @@ function openAdmin(){
     <div><div class="admin-section-label">Engagement</div><div class="admin-grid-3">
       <div class="admin-stat"><div class="admin-stat-value">${bounce}%</div><div class="admin-stat-label">Bounce Rate</div></div>
       <div class="admin-stat green"><div class="admin-stat-value">${avgSess}</div><div class="admin-stat-label">Avg Session</div></div>
-      <div class="admin-stat blue"><div class="admin-stat-value">${peakDay.label}</div><div class="admin-stat-label">Peak Day</div></div>
+      <div class="admin-stat accent"><div class="admin-stat-value">${streak.count}🔥</div><div class="admin-stat-label">Day Streak</div></div>
     </div></div>
     <div><div class="admin-section-label">Live</div><div class="admin-grid-2">
       <div class="chart-wrap"><div class="chart-title">Requests — last 14 min</div>${buildMini(genMiniSpark())}</div>
@@ -994,36 +1039,36 @@ function openAdmin(){
     </div>
     <div><div class="admin-section-label">Saved Chats (${chats.length}/${MAX_CHATS})</div>${chatRows}</div>`;
   document.getElementById('adminOverlay').classList.add('open');
-  setTimeout(()=>{
-    const fills=document.querySelectorAll('.query-bar-fill');
-    ['90%','70%','60%','45%','40%'].forEach((w,i)=>setTimeout(()=>fills[i]&&(fills[i].style.width=w),i*80));
-  },150);
+  setTimeout(()=>{const fills=document.querySelectorAll('.query-bar-fill');['90%','70%','60%','45%','40%'].forEach((w,i)=>setTimeout(()=>fills[i]&&(fills[i].style.width=w),i*80));},150);
 }
 function closeAdmin(){document.getElementById('adminOverlay').classList.remove('open');}
 function closeAdminOnBg(e){if(e.target===document.getElementById('adminOverlay'))closeAdmin();}
 
-// Chat
+// ── Chat ──
 function buildMsgEl(role,content){
   const div=document.createElement('div');div.className=`message ${role}`;
+  const time=formatTime();
   if(role==='ai'){
     div.innerHTML=`<div class="msg-avatar ai">${AV}</div>
       <div class="msg-content">
         <div class="msg-name">Askibull</div>
-        <div class="msg-text">${content.replace(/\n/g,'<br>')}</div>
+        <div class="msg-text">${renderMarkdown(content)}</div>
+        <div class="msg-time">${time}</div>
         <div class="msg-actions"><button class="msg-action-btn" onclick="copyText(this)">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy
         </button></div>
       </div>`;
   } else {
     div.innerHTML=`<div class="msg-avatar user">Y</div>
-      <div class="msg-content"><div class="msg-name">You</div><div class="msg-text">${content.replace(/\n/g,'<br>')}</div></div>`;
+      <div class="msg-content">
+        <div class="msg-name">You</div>
+        <div class="msg-text">${content.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>')}</div>
+        <div class="msg-time">${time}</div>
+      </div>`;
   }
   return div;
 }
-function appendMsg(role,content){
-  document.getElementById('chatInner').appendChild(buildMsgEl(role,content));
-  document.getElementById('chatScroll').scrollTop=99999;
-}
+function appendMsg(role,content){document.getElementById('chatInner').appendChild(buildMsgEl(role,content));document.getElementById('chatScroll').scrollTop=99999;}
 function showThinking(){
   const div=document.createElement('div');div.className='thinking-row';div.id='thinkingRow';
   div.innerHTML=`<div class="msg-avatar ai">${AV}</div>
@@ -1032,8 +1077,7 @@ function showThinking(){
       <div class="orbs"><div class="orb"></div><div class="orb"></div><div class="orb"></div><div class="orb"></div><div class="orb"></div></div>
       <div class="thinking-bar-wrap"><div class="thinking-bar"></div></div>
     </div>`;
-  document.getElementById('chatInner').appendChild(div);
-  document.getElementById('chatScroll').scrollTop=99999;
+  document.getElementById('chatInner').appendChild(div);document.getElementById('chatScroll').scrollTop=99999;
 }
 function removeThinking(){const el=document.getElementById('thinkingRow');if(el)el.remove();}
 function copyText(btn){
@@ -1043,28 +1087,40 @@ function copyText(btn){
     setTimeout(()=>{btn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy';},2000);
   });
 }
-function newChat(){
-  currentChatId=genId();messages=[];directorUnlocked=false;
-  showGreeting();renderHistory();closeSidebar();updateCounter();
-}
+function newChat(){currentChatId=genId();messages=[];directorUnlocked=false;showGreeting();renderHistory();closeSidebar();updateCounter();}
 function autoResize(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,160)+'px';}
 function handleKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage();}}
 function showError(msg){const el=document.getElementById('errorBanner');el.textContent=msg;el.style.display='block';setTimeout(()=>el.style.display='none',5000);}
 
 async function sendMessage(){
-  if(isLoading)return;
-  if(!canSend())return;
-  const input=document.getElementById('userInput');
-  const text=input.value.trim();if(!text)return;
+  if(isLoading)return;if(!canSend())return;
+  const input=document.getElementById('userInput');const text=input.value.trim();if(!text)return;
   if(text===DIRECTOR_CODE&&!directorUnlocked){directorUnlocked=true;updateCounter();}
   input.value='';input.style.height='auto';
   isLoading=true;document.getElementById('sendBtn').disabled=true;
   appendMsg('user',text);messages.push({role:'user',content:text});
-  if(messages.filter(m=>m.role==='user').length===1)saveCurrentChat(shortName(text));
+  if(messages.filter(m=>m.role==='user').length===1){saveCurrentChat(shortName(text));launchConfetti();}
   if(!directorUnlocked)addTimestamp();
-  trackMsg();updateCounter();showThinking();
+  trackMsg();updateCounter();
+
+  // Check easter egg first
+  const egg=checkEasterEgg(text);
+  if(egg){
+    showThinking();
+    await new Promise(r=>setTimeout(r,getTypingDelay(egg)));
+    removeThinking();
+    messages.push({role:'assistant',content:egg});
+    appendMsg('ai',egg);
+    saveCurrentChat(shortName(messages.find(m=>m.role==='user')?.content||'Chat'));
+    isLoading=false;document.getElementById('sendBtn').disabled=!canSend();input.focus();return;
+  }
+
+  showThinking();
   try{
-    const res=await fetch(API_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages})});
+    const [res]=await Promise.all([
+      fetch(API_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages})}),
+      new Promise(r=>setTimeout(r,getTypingDelay(text)))
+    ]);
     const data=await res.json();removeThinking();
     if(data.error){showError(data.error);if(!directorUnlocked){const ts=getValidTimestamps();ts.pop();saveMsgTimestamps(ts);}updateCounter();}
     else{
@@ -1075,9 +1131,7 @@ async function sendMessage(){
     removeThinking();showError('Connection error. Please try again.');
     if(!directorUnlocked){const ts=getValidTimestamps();ts.pop();saveMsgTimestamps(ts);}updateCounter();
   }
-  isLoading=false;
-  document.getElementById('sendBtn').disabled=!canSend();
-  input.focus();
+  isLoading=false;document.getElementById('sendBtn').disabled=!canSend();input.focus();
 }
 </script>
 </body>
