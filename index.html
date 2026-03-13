@@ -867,7 +867,7 @@ function updateCounter(){
     const oldest=getOldestTs();let resetIn='';
     if(oldest){const ms=WINDOW_MS-(Date.now()-oldest);resetIn=` Resets in ${Math.ceil(ms/60000)} min.`;timerBar.style.width=((ms/WINDOW_MS)*100)+'%';}
     counter.textContent=`0 / ${MSG_LIMIT}`;counter.className='msg-counter warning';
-    bannerText.innerHTML=`Message limit reached.${resetIn} Type <strong>${DIRECTOR_CODE}</strong> for unlimited.`;
+    bannerText.innerHTML=`Message limit reached.${resetIn} .`;
     banner.className='limit-banner show';sendBtn.disabled=true;input.disabled=true;input.placeholder='Limit reached...';
   } else {
     counter.textContent=`${rem} / ${MSG_LIMIT}`;counter.className=rem<=2?'msg-counter warning':'msg-counter';
