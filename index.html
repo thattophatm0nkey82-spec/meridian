@@ -4,11 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ALPHA MAX</title>
-
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%235865f2'/%3E%3Ctext x='16' y='23' text-anchor='middle' font-family='Arial Black,sans-serif' font-weight='900' font-size='18' fill='white'%3EAM%3C/text%3E%3C/svg%3E">
-
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
-
 <script>
 window.FIREBASE_CONFIG = {
   apiKey:            "AIzaSyBCYDro7j6LQ33_056hkrrRQd6HbWeW3SE",
@@ -20,7 +17,6 @@ window.FIREBASE_CONFIG = {
 };
 window.OPENAI_KEY = "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";
 </script>
-
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 :root{
@@ -33,7 +29,6 @@ window.OPENAI_KEY = "sk-proj-NFJXRTu8u3L3kMV5CYpNJjJxa_jBDIzTGAeWNePelVVVpxkBHsG
 }
 html,body{height:100%;background:var(--bg);}
 body{font-family:'Barlow',sans-serif;color:var(--text);font-size:14px;overflow:hidden;}
-
 .layout{display:flex;flex-direction:column;height:100vh;}
 .main-area{display:flex;flex:1;overflow:hidden;}
 .content{flex:1;overflow-y:auto;background:var(--bg);position:relative;}
@@ -61,6 +56,10 @@ body{font-family:'Barlow',sans-serif;color:var(--text);font-size:14px;overflow:h
 .user-av img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
 .request-btn{display:flex;align-items:center;gap:7px;background:linear-gradient(135deg,#ff4757,#b02030);color:#fff;border:none;padding:7px 16px;border-radius:6px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:opacity .15s,transform .15s;white-space:nowrap;}
 .request-btn:hover{opacity:.85;transform:translateY(-1px);}
+
+/* VERIFY BADGE */
+.verify-badge{display:inline-flex;align-items:center;gap:3px;background:rgba(46,213,115,.12);border:1px solid rgba(46,213,115,.3);color:var(--green);font-size:9px;font-weight:800;letter-spacing:1px;padding:2px 6px;border-radius:3px;font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;}
+.verify-icon{font-size:10px;}
 
 /* TABS */
 .tabs-bar{background:rgba(13,15,26,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);display:flex;overflow-x:auto;scrollbar-width:none;flex-shrink:0;position:relative;z-index:19;}
@@ -130,18 +129,18 @@ body{font-family:'Barlow',sans-serif;color:var(--text);font-size:14px;overflow:h
 .rcard{display:flex;align-items:stretch;height:100%;}
 .rcard-medal{position:relative;}
 .rcard-medal::before{content:'';position:absolute;inset:4px;border-radius:5px;pointer-events:none;z-index:3;}
-.medal-gold  .rcard-medal::before{box-shadow:0 0 0 2px var(--gold),0 0 16px rgba(240,165,0,.45);}
-.medal-silver.rcard-medal::before{box-shadow:0 0 0 2px var(--silver),0 0 12px rgba(154,160,192,.3);}
-.medal-bronze.rcard-medal::before{box-shadow:0 0 0 2px var(--bronze),0 0 12px rgba(192,120,64,.3);}
+.medal-gold .rcard-medal::before{box-shadow:0 0 0 2px var(--gold),0 0 16px rgba(240,165,0,.45);}
+.medal-silver .rcard-medal::before{box-shadow:0 0 0 2px var(--silver),0 0 12px rgba(154,160,192,.3);}
+.medal-bronze .rcard-medal::before{box-shadow:0 0 0 2px var(--bronze),0 0 12px rgba(192,120,64,.3);}
 .rnum{width:54px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;font-family:'Barlow Condensed',sans-serif;}
 .rav{flex:1;overflow:hidden;display:flex;}
 .av-fill{width:100%;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:#fff;overflow:hidden;font-family:'Barlow Condensed',sans-serif;}
 .av-fill img{width:100%;height:100%;object-fit:cover;display:block;}
-@keyframes goldPulse  {0%,100%{box-shadow:inset 0 0 0 0 rgba(240,165,0,0);}   50%{box-shadow:inset 0 0 60px rgba(240,165,0,.08);}}
-@keyframes silverPulse{0%,100%{box-shadow:inset 0 0 0 0 rgba(154,160,184,0);} 50%{box-shadow:inset 0 0 50px rgba(154,160,184,.06);}}
-@keyframes bronzePulse{0%,100%{box-shadow:inset 0 0 0 0 rgba(192,120,64,0);}  50%{box-shadow:inset 0 0 46px rgba(192,120,64,.06);}}
-@keyframes crownBob   {0%,100%{transform:translateX(-50%) rotate(-5deg);}50%{transform:translateX(-50%) translateY(-3px) rotate(5deg);}}
-@keyframes conicSpin  {to{transform:rotate(360deg);}}
+@keyframes goldPulse{0%,100%{box-shadow:inset 0 0 0 0 rgba(240,165,0,0);}50%{box-shadow:inset 0 0 60px rgba(240,165,0,.08);}}
+@keyframes silverPulse{0%,100%{box-shadow:inset 0 0 0 0 rgba(154,160,184,0);}50%{box-shadow:inset 0 0 50px rgba(154,160,184,.06);}}
+@keyframes bronzePulse{0%,100%{box-shadow:inset 0 0 0 0 rgba(192,120,64,0);}50%{box-shadow:inset 0 0 46px rgba(192,120,64,.06);}}
+@keyframes crownBob{0%,100%{transform:translateX(-50%) rotate(-5deg);}50%{transform:translateX(-50%) translateY(-3px) rotate(5deg);}}
+@keyframes conicSpin{to{transform:rotate(360deg);}}
 .rrow-1{background:linear-gradient(90deg,rgba(240,165,0,.13),rgba(240,165,0,.04) 55%,transparent)!important;border-bottom:1px solid rgba(240,165,0,.3)!important;animation:rowIn .38s ease both,goldPulse 3.5s .5s ease-in-out infinite;}
 .rrow-1 .rnum{background:linear-gradient(160deg,#2c2000,#181200)!important;color:var(--gold)!important;text-shadow:0 0 20px rgba(240,165,0,.9);flex-direction:column;padding-top:18px;align-items:flex-end;padding-bottom:6px;position:relative;}
 .rrow-1 .rnum::before{content:'👑';font-size:13px;text-shadow:none;position:absolute;top:5px;left:50%;transform:translateX(-50%);animation:crownBob 2.8s ease-in-out infinite;}
@@ -207,6 +206,10 @@ body{font-family:'Barlow',sans-serif;color:var(--text);font-size:14px;overflow:h
 .mbar-wrap{flex:1;height:7px;background:var(--border2);border-radius:4px;overflow:hidden;}
 .mbar-fill{height:100%;border-radius:4px;transition:width .7s cubic-bezier(.22,1,.36,1);}
 .mbar-val{font-size:13px;font-weight:700;color:var(--text);width:28px;text-align:right;font-family:'Barlow Condensed',sans-serif;}
+
+/* PEAK RANK */
+.peak-rank-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(240,165,0,.1);border:1px solid rgba(240,165,0,.25);color:var(--gold);font-size:10px;font-weight:800;letter-spacing:1px;padding:3px 8px;border-radius:4px;font-family:'Barlow Condensed',sans-serif;}
+
 .rankup-section{margin:0 22px 16px;background:var(--bg3);border:1px solid var(--border);border-radius:8px;overflow:hidden;}
 .rankup-header{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;cursor:pointer;user-select:none;transition:background .15s;}
 .rankup-header:hover{background:var(--bg4);}
@@ -271,7 +274,6 @@ body{font-family:'Barlow',sans-serif;color:var(--text);font-size:14px;overflow:h
 .comment-text-input{flex:1;resize:none;min-height:60px;}
 .comment-submit{align-self:flex-end;background:var(--accent);color:#fff;border:none;padding:7px 18px;border-radius:5px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:opacity .15s,transform .15s;}
 .comment-submit:hover{opacity:.85;transform:translateY(-1px);}
-.comments-empty{font-size:12px;color:var(--muted);font-style:italic;padding:8px 0;}
 
 /* AUTH MODAL */
 .auth-mov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:400;align-items:center;justify-content:center;padding:16px;}
@@ -399,13 +401,13 @@ body{font-family:'Barlow',sans-serif;color:var(--text);font-size:14px;overflow:h
 .tier-btn{padding:6px 11px;border-radius:4px;font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;font-family:'Barlow Condensed',sans-serif;cursor:pointer;border:1px solid transparent;opacity:.4;transition:opacity .15s,transform .12s;background:var(--bg3);}
 .tier-btn:hover{opacity:.7;}
 .tier-btn.sel{opacity:1;border-color:currentColor;transform:scale(1.06);}
-.tier-btn[data-tier="auto"]  {color:var(--muted2);}
+.tier-btn[data-tier="auto"]{color:var(--muted2);}
 .tier-btn[data-tier="Alpha+"]{color:#ff4757;}
-.tier-btn[data-tier="Alpha"] {color:#ff8c00;}
-.tier-btn[data-tier="Solid"] {color:#ffd32a;}
-.tier-btn[data-tier="Mid"]   {color:#2ed573;}
-.tier-btn[data-tier="Low"]   {color:#1e90ff;}
-.tier-btn[data-tier="NPC"]   {color:#a29bfe;}
+.tier-btn[data-tier="Alpha"]{color:#ff8c00;}
+.tier-btn[data-tier="Solid"]{color:#ffd32a;}
+.tier-btn[data-tier="Mid"]{color:#2ed573;}
+.tier-btn[data-tier="Low"]{color:#1e90ff;}
+.tier-btn[data-tier="NPC"]{color:#a29bfe;}
 .ai-box{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--card-radius);padding:16px;margin-bottom:16px;position:relative;overflow:hidden;}
 .ai-box::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(88,101,242,.07),rgba(88,101,242,.02) 40%,transparent);pointer-events:none;}
 .ai-box-header{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
@@ -431,37 +433,29 @@ body{font-family:'Barlow',sans-serif;color:var(--text);font-size:14px;overflow:h
 .prize-header{text-align:center;margin-bottom:40px;}
 .prize-header-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:36px;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;}
 .prize-header-sub{font-size:14px;color:var(--muted2);line-height:1.7;}
-.prize-podium{display:grid;grid-template-columns:1fr 1.15fr 1fr;gap:16px;align-items:end;margin-bottom:40px;}
+.prize-podium{display:flex;flex-wrap:wrap;gap:16px;margin-bottom:40px;justify-content:center;}
 .prize-slot{
   background:var(--bg2);border:1px solid var(--border);border-radius:14px;
   padding:28px 20px 24px;text-align:center;position:relative;overflow:hidden;
   transition:transform .2s,border-color .2s,box-shadow .2s;
-  animation:fadeUp .45s ease both;
+  animation:fadeUp .45s ease both;flex:1;min-width:180px;max-width:280px;
 }
 .prize-slot:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.5);}
-.prize-slot.slot-1{
+.prize-slot.slot-grand{
   border-color:rgba(240,165,0,.4);
   background:linear-gradient(160deg,rgba(240,165,0,.07),var(--bg2) 60%);
   animation-delay:.1s;
 }
-.prize-slot.slot-1::before{content:'';position:absolute;inset:0;background:conic-gradient(transparent 20%,rgba(240,165,0,.04) 50%,transparent 80%);animation:conicSpin 16s linear infinite;pointer-events:none;}
-.prize-slot.slot-2,.prize-slot.slot-3{animation-delay:.05s;}
+.prize-slot.slot-grand::before{content:'';position:absolute;inset:0;background:conic-gradient(transparent 20%,rgba(240,165,0,.04) 50%,transparent 80%);animation:conicSpin 16s linear infinite;pointer-events:none;}
 .prize-slot-pos{font-size:40px;margin-bottom:10px;display:block;line-height:1;}
 .prize-slot-label{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;}
 .prize-slot-icon{font-size:44px;margin-bottom:12px;display:block;animation:bounce 3s ease-in-out infinite;}
 .prize-slot-name{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;letter-spacing:.5px;color:var(--text);margin-bottom:6px;min-height:28px;}
 .prize-slot-desc{font-size:13px;color:var(--muted2);line-height:1.65;min-height:40px;}
-.prize-slot-condition{
-  margin-top:14px;padding:8px 12px;
-  background:var(--bg3);border:1px solid var(--border2);border-radius:6px;
-  font-size:11px;color:var(--muted2);font-family:'Barlow Condensed',sans-serif;letter-spacing:.3px;
-}
+.prize-slot-condition{margin-top:14px;padding:8px 12px;background:var(--bg3);border:1px solid var(--border2);border-radius:6px;font-size:11px;color:var(--muted2);font-family:'Barlow Condensed',sans-serif;letter-spacing:.3px;}
 .prize-slot-condition strong{color:var(--text);}
 .prize-slot-empty{font-size:13px;color:var(--muted);font-style:italic;min-height:28px;display:flex;align-items:center;justify-content:center;}
-.prize-countdown{
-  background:var(--bg2);border:1px solid var(--border);border-radius:10px;
-  padding:20px;text-align:center;margin-bottom:24px;
-}
+.prize-countdown{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:20px;text-align:center;margin-bottom:24px;}
 .prize-countdown-label{font-size:10px;font-weight:700;color:var(--muted);letter-spacing:2px;text-transform:uppercase;font-family:'Barlow Condensed',sans-serif;margin-bottom:12px;}
 .prize-countdown-digits{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
 .countdown-unit{display:flex;flex-direction:column;align-items:center;gap:4px;}
@@ -473,18 +467,11 @@ body{font-family:'Barlow',sans-serif;color:var(--text);font-size:14px;overflow:h
 .prize-leader-name{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;color:var(--gold);}
 .prize-leader-score{font-size:12px;color:var(--muted2);margin-top:2px;}
 
-/* ══ IDENTITY / CLAIM ══ */
-.claim-section{
-  background:var(--bg2);border:1px solid var(--border);border-radius:10px;
-  padding:20px;margin-top:24px;
-}
+/* IDENTITY / CLAIM */
+.claim-section{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:20px;margin-top:24px;}
 .claim-section-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;color:var(--text);margin-bottom:6px;}
 .claim-section-sub{font-size:13px;color:var(--muted2);line-height:1.65;margin-bottom:16px;}
-.claim-status{
-  display:flex;align-items:center;gap:10px;
-  background:var(--bg3);border:1px solid var(--border2);border-radius:8px;padding:12px 16px;
-  margin-bottom:12px;
-}
+.claim-status{display:flex;align-items:center;gap:10px;background:var(--bg3);border:1px solid var(--border2);border-radius:8px;padding:12px 16px;margin-bottom:12px;}
 .claim-status-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
 .claim-status-dot.verified{background:var(--green);box-shadow:0 0 8px rgba(46,213,115,.6);}
 .claim-status-dot.pending{background:var(--gold);box-shadow:0 0 8px rgba(240,165,0,.5);}
@@ -492,17 +479,12 @@ body{font-family:'Barlow',sans-serif;color:var(--text);font-size:14px;overflow:h
 .claim-status-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:.3px;}
 .claim-status-meta{font-size:11px;color:var(--muted2);margin-left:auto;font-family:'Barlow Condensed',sans-serif;}
 .claim-player-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px;margin-bottom:14px;}
-.claim-player-card{
-  background:var(--bg3);border:1px solid var(--border);border-radius:7px;
-  padding:10px;text-align:center;cursor:pointer;transition:all .15s;
-}
+.claim-player-card{background:var(--bg3);border:1px solid var(--border);border-radius:7px;padding:10px;text-align:center;cursor:pointer;transition:all .15s;}
 .claim-player-card:hover{border-color:var(--accent);background:rgba(88,101,242,.08);}
 .claim-player-card.selected{border-color:var(--accent);background:rgba(88,101,242,.14);box-shadow:0 0 0 1px var(--accent);}
 .claim-player-card.taken{opacity:.4;cursor:not-allowed;pointer-events:none;}
 .claim-player-name{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;margin-top:6px;color:var(--text);}
 .claim-player-taken{font-size:9px;color:var(--green);font-family:'Barlow Condensed',sans-serif;letter-spacing:.5px;}
-
-/* admin claim list */
 .claim-admin-item{display:flex;align-items:center;gap:10px;padding:9px;background:var(--bg3);border:1px solid var(--border);border-radius:6px;margin-bottom:6px;}
 .claim-admin-info{flex:1;min-width:0;}
 .claim-admin-name{font-size:13px;font-weight:700;font-family:'Barlow Condensed',sans-serif;}
@@ -512,6 +494,23 @@ body{font-family:'Barlow',sans-serif;color:var(--text);font-size:14px;overflow:h
 .claim-verify-btn:hover{background:rgba(46,213,115,.25);}
 .claim-deny-btn{background:rgba(255,71,87,.12);border:1px solid rgba(255,71,87,.25);color:var(--red);padding:5px 11px;border-radius:5px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:all .15s;}
 .claim-deny-btn:hover{background:rgba(255,71,87,.22);}
+
+/* ══ ADMIN ROLES ══ */
+.admin-user-item{display:flex;align-items:center;gap:10px;padding:10px;background:var(--bg3);border:1px solid var(--border);border-radius:6px;margin-bottom:8px;}
+.admin-user-info{flex:1;min-width:0;}
+.admin-user-name{font-size:13px;font-weight:700;font-family:'Barlow Condensed',sans-serif;}
+.admin-user-email{font-size:10px;color:var(--muted);font-family:'Barlow Condensed',sans-serif;margin-top:1px;}
+.admin-user-roles{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px;}
+.role-chip{font-size:9px;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:2px 7px;border-radius:3px;font-family:'Barlow Condensed',sans-serif;border:1px solid;cursor:pointer;transition:all .15s;user-select:none;}
+.role-chip.on{background:rgba(88,101,242,.2);border-color:var(--accent);color:#818cf8;}
+.role-chip.off{background:transparent;border-color:var(--border2);color:var(--muted);}
+.role-chip:hover{border-color:var(--accent);color:#818cf8;}
+.prize-slot-num-label{font-size:10px;color:var(--muted);font-family:'Barlow Condensed',sans-serif;margin-bottom:4px;font-weight:700;letter-spacing:1px;text-transform:uppercase;}
+
+/* PRIZE ADMIN EDITOR */
+.prize-slot-editor{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:14px;margin-bottom:10px;}
+.prize-slot-editor-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.prize-slot-editor-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:800;color:var(--text);}
 </style>
 </head>
 <body>
@@ -581,7 +580,7 @@ body{font-family:'Barlow',sans-serif;color:var(--text);font-size:14px;overflow:h
 import { initializeApp }   from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
 import { getFirestore, collection, doc, onSnapshot,
          setDoc, deleteDoc, addDoc, query, orderBy,
-         writeBatch, updateDoc, getDoc }
+         writeBatch, updateDoc, getDoc, getDocs }
   from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
 import { getAuth, createUserWithEmailAndPassword,
          signInWithEmailAndPassword, signOut, onAuthStateChanged,
@@ -599,25 +598,16 @@ const TIER_COLORS={'Alpha+':'#ff4757','Alpha':'#ff8c00','Solid':'#ffd32a','Mid':
 const TIER_RANGES=[{label:'Alpha+',min:90},{label:'Alpha',min:75},{label:'Solid',min:60},{label:'Mid',min:45},{label:'Low',min:30},{label:'NPC',min:0}];
 const CK='alphamax_code4';
 const RMK='alphamax_rank_prev';
-const RANKUP_TIPS={
-  alpha:{icon:'⚡',label:'Alpha Score',tips:['Take charge in group settings — be the one who makes the call.','Stand firm on your opinions; don\'t flip when challenged.','Make bold moves others are afraid to take.','Speak first in the room. Silence signals uncertainty.','Own every outcome — your successes AND your L\'s.','Dress intentionally. Presentation signals status.']},
-  clout:{icon:'👑',label:'Clout',tips:['Build your network — who you know matters as much as what you do.','Be seen at the right events and in the right circles.','Post wins publicly. Clout is a public sport.','Get people talking about you when you\'re not in the room.','Align yourself with people who are already rated highly.','Achieve something others genuinely can\'t ignore.']},
-  rizz:{icon:'🔥',label:'Rizz Factor',tips:['Rizz someone up — sustained charm earns serious points.','Eye contact, timing, and confidence are the holy trinity.','Make people feel like the most interesting person in the room.','Have stories. Boring people don\'t have rizz.','Learn the art of the callback — remember details about people.','Never try too hard. The best rizz looks effortless.']}
-};
 
-let people=[], newsItems=[], comments={}, joinRequests=[], claimRequests=[];
-let prizes={
-  slot1:{icon:'🏆',name:'',desc:'',condition:''},
-  slot2:{icon:'💵',name:'$1 Cash Prize',desc:'Winner takes all — one crisp dollar, straight to your pocket.',condition:'#1 on the overall tier list when April ends'},
-  slot3:{icon:'🥉',name:'',desc:'',condition:''}
-};
-let currentUser=null, isAdmin=false;
-let tab='news', traits=[], selColor=COLORS[0], selTierOverride='auto';
-let buf='', btimer=null;
-let currentModalId=null, currentModalTab='news';
-let prevRanks={}, rankMovements={}, currentRankupCat='rizz';
-let pendingAIChanges=null;
-let countdownTimer=null;
+// All possible admin permissions
+const ALL_ROLES = [
+  {key:'players',   label:'Manage Players'},
+  {key:'news',      label:'Post News'},
+  {key:'prizes',    label:'Edit Prizes'},
+  {key:'requests',  label:'Approve Requests'},
+  {key:'ai',        label:'AI Updater'},
+  {key:'roles',     label:'Manage Admins'},
+];
 
 const getCode     = ()  => localStorage.getItem(CK)||'me123';
 const setCode     = c   => localStorage.setItem(CK,c);
@@ -631,6 +621,31 @@ const esc    = s  => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replac
 const g      = id => document.getElementById(id);
 const sorted = ()  => [...people].sort((a,b)=>(b.score||0)-(a.score||0));
 const sortedBy=k   => [...people].sort((a,b)=>(b[k]||0)-(a[k]||0));
+
+let people=[], newsItems=[], comments={}, joinRequests=[], claimRequests=[], adminUsers=[];
+let prizeConfig = {
+  month: 'April',
+  deadlineISO: '2025-05-01T00:00:00',
+  slots: [
+    {pos:1, posLabel:'1st Place', posIcon:'🥇', icon:'🏆', name:'', desc:'', condition:'', grand:false},
+    {pos:2, posLabel:'Grand Prize', posIcon:'💰', icon:'💵', name:'$1 Cash Prize', desc:'Winner takes all — one crisp dollar, straight to your pocket.', condition:'#1 on the overall tier list when the month ends', grand:true},
+    {pos:3, posLabel:'3rd Place', posIcon:'🥉', icon:'', name:'', desc:'', condition:'', grand:false},
+  ]
+};
+
+let currentUser=null, isAdmin=false, myRoles={};
+let tab='news', traits=[], selColor=COLORS[0], selTierOverride='auto';
+let buf='', btimer=null;
+let currentModalId=null, currentModalTab='news';
+let prevRanks={}, rankMovements={}, currentRankupCat='rizz';
+let pendingAIChanges=null;
+let countdownTimer=null;
+
+const RANKUP_TIPS={
+  alpha:{icon:'⚡',label:'Alpha Score',tips:['Take charge in group settings — be the one who makes the call.','Stand firm on your opinions; don\'t flip when challenged.','Make bold moves others are afraid to take.','Speak first in the room. Silence signals uncertainty.','Own every outcome — your successes AND your L\'s.','Dress intentionally. Presentation signals status.']},
+  clout:{icon:'👑',label:'Clout',tips:['Build your network — who you know matters as much as what you do.','Be seen at the right events and in the right circles.','Post wins publicly. Clout is a public sport.','Get people talking about you when you\'re not in the room.','Align yourself with people who are already rated highly.','Achieve something others genuinely can\'t ignore.']},
+  rizz:{icon:'🔥',label:'Rizz Factor',tips:['Rizz someone up — sustained charm earns serious points.','Eye contact, timing, and confidence are the holy trinity.','Make people feel like the most interesting person in the room.','Have stories. Boring people don\'t have rizz.','Learn the art of the callback — remember details about people.','Never try too hard. The best rizz looks effortless.']}
+};
 
 function setSyncStatus(s){
   const dot=g('sync-dot'),lbl=g('sync-label');if(!dot)return;
@@ -648,6 +663,29 @@ function timeAgo(ts){
   const h=Math.floor(m/60);if(h<24)return h+'h ago';
   return Math.floor(h/24)+'d ago';
 }
+
+// ── PEAK RANK TRACKING ──
+async function updatePeakRankIfNeeded(){
+  const order = sorted();
+  for(let i=0;i<order.length;i++){
+    const p = order[i];
+    const currentRank = i+1;
+    const currentPeak = p.peakRank||999;
+    if(currentRank < currentPeak){
+      // New peak! Update in Firestore
+      try{ await updateDoc(doc(db,'people',p.id),{peakRank:currentRank,peakRankTs:Date.now()}); }catch(e){}
+    }
+  }
+}
+
+// ── VERIFIED STATUS ──
+function isVerified(playerId){
+  return claimRequests.some(c=>c.profileId===playerId && c.status==='verified');
+}
+function getVerifiedBadge(){
+  return `<span class="verify-badge"><span class="verify-icon">✓</span>VERIFIED</span>`;
+}
+
 function computeMovements(){
   const pr=getPrevRanks();rankMovements={};
   sorted().forEach((p,i)=>{
@@ -709,6 +747,9 @@ async function checkRankChanges(before){
   }
 }
 
+// ── PERMISSION HELPERS ──
+function can(role){ return isAdmin && (myRoles[role]===true || myRoles['superadmin']===true); }
+
 function render(){
   if(tab==='dev'){renderDev();return;}
   if(tab==='tier'){renderTierList();return;}
@@ -721,14 +762,13 @@ function render(){
 /* ══ PRIZE PAGE ══ */
 function renderPrizePage(){
   if(countdownTimer)clearInterval(countdownTimer);
-  // April 30 deadline
-  const deadline=new Date('2025-05-01T00:00:00');
+  const deadline = new Date(prizeConfig.deadlineISO || '2025-05-01T00:00:00');
   const leader=sorted()[0];
   const leaderAv=leader?avSmall(leader,50,25):'';
 
   function buildCountdown(){
     const now=new Date();const diff=deadline-now;
-    if(diff<=0)return`<div style="font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;color:var(--red);">⏰ APRIL HAS ENDED — WINNER BEING DETERMINED</div>`;
+    if(diff<=0)return`<div style="font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;color:var(--red);">⏰ ${prizeConfig.month||'This Month'} HAS ENDED — WINNER BEING DETERMINED</div>`;
     const d=Math.floor(diff/86400000);const h=Math.floor((diff%86400000)/3600000);const m=Math.floor((diff%3600000)/60000);const s=Math.floor((diff%60000)/1000);
     return`<div class="prize-countdown-digits">
       <div class="countdown-unit"><div class="countdown-num" id="cd-d">${d}</div><div class="countdown-unit-label">Days</div></div>
@@ -741,12 +781,12 @@ function renderPrizePage(){
     </div>`;
   }
 
-  function slotHTML(key,pos,posLabel,posIcon){
-    const sl=prizes[key];
+  const slots = prizeConfig.slots||[];
+  const slotCards = slots.map((sl,idx)=>{
     const isEmpty=!sl.name&&!sl.desc;
-    return`<div class="prize-slot ${key}">
-      <span class="prize-slot-pos">${posIcon}</span>
-      <div class="prize-slot-label">${posLabel}</div>
+    return`<div class="prize-slot${sl.grand?' slot-grand':''}">
+      <span class="prize-slot-pos">${sl.posIcon||'🎁'}</span>
+      <div class="prize-slot-label">${sl.posLabel||`Prize ${idx+1}`}</div>
       ${isEmpty
         ?`<div class="prize-slot-empty">TBA</div>`
         :`<span class="prize-slot-icon">${sl.icon||'🎁'}</span>
@@ -755,16 +795,16 @@ function renderPrizePage(){
       }
       ${sl.condition?`<div class="prize-slot-condition">🎯 <strong>How to win:</strong> ${esc(sl.condition)}</div>`:''}
     </div>`;
-  }
+  }).join('');
 
   g('content').innerHTML=`<div class="prize-page">
     <div class="prize-header">
-      <div class="prize-header-title">🏅 Prizes</div>
+      <div class="prize-header-title">🏅 ${esc(prizeConfig.month||'Monthly')} Prizes</div>
       <p class="prize-header-sub">Stay ranked. Win real rewards. The clock is ticking.</p>
     </div>
 
     <div class="prize-countdown">
-      <div class="prize-countdown-label">⏳ Time Remaining in April</div>
+      <div class="prize-countdown-label">⏳ Time Remaining in ${esc(prizeConfig.month||'This Month')}</div>
       <div id="prize-countdown-inner">${buildCountdown()}</div>
     </div>
 
@@ -777,18 +817,13 @@ function renderPrizePage(){
       </div>
     </div>`:''}
 
-    <div class="prize-podium">
-      ${slotHTML('slot1','1','1st Place','🥇')}
-      ${slotHTML('slot2','2','Grand Prize','💰')}
-      ${slotHTML('slot3','3','3rd Place','🥉')}
-    </div>
+    <div class="prize-podium">${slotCards}</div>
   </div>`;
 
-  // live countdown tick
   countdownTimer=setInterval(()=>{
     const el=g('prize-countdown-inner');if(!el)return clearInterval(countdownTimer);
     const now=new Date();const diff=deadline-now;
-    if(diff<=0){el.innerHTML=`<div style="font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;color:var(--red);">⏰ APRIL HAS ENDED</div>`;clearInterval(countdownTimer);return;}
+    if(diff<=0){el.innerHTML=`<div style="font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;color:var(--red);">⏰ ${prizeConfig.month||'This Month'} HAS ENDED</div>`;clearInterval(countdownTimer);return;}
     const d=Math.floor(diff/86400000),h=Math.floor((diff%86400000)/3600000),m=Math.floor((diff%3600000)/60000),s=Math.floor((diff%60000)/1000);
     const dEl=g('cd-d'),hEl=g('cd-h'),mEl=g('cd-m'),sEl=g('cd-s');
     if(dEl)dEl.textContent=d;if(hEl)hEl.textContent=String(h).padStart(2,'0');if(mEl)mEl.textContent=String(m).padStart(2,'0');if(sEl)sEl.textContent=String(s).padStart(2,'0');
@@ -838,7 +873,7 @@ function renderIdentitySection(){
         <div class="claim-status-dot pending"></div>
         <div class="claim-status-text">⏳ Waiting for admin to verify your claim${p?' as <strong>'+esc(p.name)+'</strong>':''}</div>
       </div>
-      <p style="font-size:12px;color:var(--muted2);margin-top:8px;">Admins will review and confirm you're really ${p?esc(p.name):'this person'}. This prevents anyone from falsely claiming your identity.</p>
+      <p style="font-size:12px;color:var(--muted2);margin-top:8px;">Admins will review and confirm you're really ${p?esc(p.name):'this person'}.</p>
     </div>`;
   }
 
@@ -849,14 +884,14 @@ function renderIdentitySection(){
         <div class="claim-status-dot" style="background:var(--red);box-shadow:0 0 8px rgba(255,71,87,.5);"></div>
         <div class="claim-status-text">❌ Your claim was denied</div>
       </div>
-      <p style="font-size:12px;color:var(--muted2);margin-top:8px;margin-bottom:12px;">Contact an admin if you believe this is a mistake. You can submit a new claim below.</p>
+      <p style="font-size:12px;color:var(--muted2);margin-top:8px;margin-bottom:12px;">Contact an admin if you believe this is a mistake.</p>
       ${renderClaimForm()}
     </div>`;
   }
 
   return`<div class="claim-section">
     <div class="claim-section-title">🔗 Are You On The List?</div>
-    <p class="claim-section-sub">Select your profile below to request identity verification. An admin will confirm it's really you — no one can claim your spot without approval.</p>
+    <p class="claim-section-sub">Select your profile below to request identity verification. An admin will confirm it's really you.</p>
     ${renderClaimForm()}
   </div>`;
 }
@@ -955,9 +990,10 @@ function renderRankings(){
     const pts=p[key]||0;const ti=tierInfo(pts,p.tierOverride);
     const ovBadge=p.tierOverride&&p.tierOverride!=='auto'?`<span class="override-badge">★ ${esc(p.tierOverride)}</span>`:'';
     const movBadge=moveBadgeHTML(p.id);
+    const verBadge=isVerified(p.id)?getVerifiedBadge():'';
     h+=`<div class="rrow ${rc}" onclick="openModal('${p.id}')">
       <div class="rcard rcard-medal ${mCls}"><div class="rnum">${n}.</div><div class="rav">${avFill(p)}</div></div>
-      <div class="pcell"><div class="pname">${esc(p.name)}</div><div class="psub"><span class="tbadge"><span class="tpip" style="background:${ti.color}"></span><span style="color:${ti.color}">${ti.label}</span></span>${ovBadge}${movBadge}${p.nickname?`<span style="color:var(--border2)">·</span><span>${esc(p.nickname)}</span>`:''}</div></div>
+      <div class="pcell"><div class="pname">${esc(p.name)} ${verBadge}</div><div class="psub"><span class="tbadge"><span class="tpip" style="background:${ti.color}"></span><span style="color:${ti.color}">${ti.label}</span></span>${ovBadge}${movBadge}${p.nickname?`<span style="color:var(--border2)">·</span><span>${esc(p.nickname)}</span>`:''}</div></div>
       <div class="scell"><div class="sval" style="color:${ti.color}">${pts}</div><div class="sbar-wrap"><div class="sbar" style="width:${Math.max(2,pts)}%;background:${ti.color}"></div></div></div>
     </div>`;
   });
@@ -967,15 +1003,18 @@ function renderRankings(){
 function renderTierList(){
   const tList=[
     {label:'Alpha+',min:90,max:100,color:'#ff4757'},{label:'Alpha',min:75,max:89,color:'#ff8c00'},
-    {label:'Solid', min:60,max:74, color:'#ffd32a'},{label:'Mid',  min:45,max:59,color:'#2ed573'},
-    {label:'Low',   min:30,max:44, color:'#1e90ff'},{label:'NPC',  min:0, max:29,color:'#a29bfe'},
+    {label:'Solid',min:60,max:74,color:'#ffd32a'},{label:'Mid',min:45,max:59,color:'#2ed573'},
+    {label:'Low',min:30,max:44,color:'#1e90ff'},{label:'NPC',min:0,max:29,color:'#a29bfe'},
   ];
   let h='<div class="tier-wrap">';
   tList.forEach(t=>{
     const m=people.filter(p=>tierInfo(p.score||0,p.tierOverride).label===t.label).sort((a,b)=>(b.score||0)-(a.score||0));
-    const cards=m.length?m.map(p=>`<div onclick="openModal('${p.id}')" style="display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;transition:transform .18s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform=''">
-      ${avSmall(p,52,6)}<div style="font-size:10px;font-weight:700;color:var(--text);max-width:58px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:'Barlow Condensed',sans-serif;">${esc(p.name.split(' ')[0])}</div>
-      <div style="font-size:10px;color:${t.color};font-family:'Barlow Condensed',sans-serif;font-weight:700;">${p.score||0}</div></div>`).join('')
+    const cards=m.length?m.map(p=>{
+      const vBadge=isVerified(p.id)?`<span style="font-size:8px;color:var(--green);font-family:'Barlow Condensed',sans-serif;font-weight:800;">✓</span>`:'';
+      return`<div onclick="openModal('${p.id}')" style="display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;transition:transform .18s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform=''">
+        ${avSmall(p,52,6)}<div style="font-size:10px;font-weight:700;color:var(--text);max-width:58px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:'Barlow Condensed',sans-serif;">${esc(p.name.split(' ')[0])} ${vBadge}</div>
+        <div style="font-size:10px;color:${t.color};font-family:'Barlow Condensed',sans-serif;font-weight:700;">${p.score||0}</div></div>`;
+    }).join('')
       :'<span style="color:var(--border2);font-size:11px;font-style:italic;">empty</span>';
     h+=`<div style="display:flex;border-radius:8px;overflow:hidden;border:1px solid var(--border);margin-bottom:7px;transition:border-color .2s,transform .2s;" onmouseover="this.style.borderColor='var(--border2)';this.style.transform='translateX(2px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform=''">
       <div style="width:82px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:${t.color}18;border-right:1px solid ${t.color}30;padding:8px;">
@@ -1008,7 +1047,6 @@ function renderJoinRequest(){
       <div style="font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;margin-bottom:8px;">Request Submitted</div>
       <p style="color:var(--muted2);line-height:1.7;margin-bottom:16px;">You've already submitted a request for <b style="color:var(--text)">${esc(existing.name)}</b>.</p>
       <div style="display:inline-block;background:var(--bg3);border:1px solid var(--border2);border-radius:8px;padding:10px 20px;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:${statusColor};">${statusText}</div>
-      ${existing.status==='rejected'?`<p style="color:var(--muted2);font-size:12px;margin-top:12px;">Your request was rejected. Contact an admin if you think this was a mistake.</p>`:''}
     </div></div>`;
     return;
   }
@@ -1016,7 +1054,7 @@ function renderJoinRequest(){
     <div class="req-header">
       <span class="req-header-icon">🙋</span>
       <div class="req-title">Join The Tier List</div>
-      <p class="req-sub">Submit your profile for review. Admins will approve or reject it. If approved, you'll appear on the rankings.</p>
+      <p class="req-sub">Submit your profile for review. Admins will approve or reject it.</p>
     </div>
     <div class="req-card">
       <div class="req-form" id="req-form">
@@ -1029,7 +1067,7 @@ function renderJoinRequest(){
           <input type="file" id="req-photo-file" accept="image/*" onchange="handleReqPhoto(event)" style="font-size:11px;color:var(--muted2);margin-top:4px;">
           <input type="hidden" id="req-photo-data">
           <div style="font-size:10px;color:var(--muted);margin-top:4px;">Or paste a URL:</div>
-          <input id="req-photo-url" placeholder="https://..." oninput="previewReqPhotoUrl()" style="margin-top:4px;">
+          <input id="req-photo-url" placeholder="https://..." oninput="previewReqPhotoUrl()">
         </div>
         <div class="req-fg"><label>Avatar Color</label><div id="req-swatches" style="display:flex;gap:6px;flex-wrap:wrap;margin-top:4px;"></div><input type="hidden" id="req-color" value="${COLORS[0]}"></div>
         <div id="req-error" style="color:var(--red);font-size:12px;display:none;"></div>
@@ -1042,7 +1080,7 @@ function renderJoinRequest(){
   if(sw)sw.innerHTML=COLORS.map((c,i)=>`<div style="width:22px;height:22px;border-radius:50%;background:${c};cursor:pointer;border:2px solid ${i===0?'#fff':'transparent'};transition:transform .15s,border-color .15s;" onclick="pickReqColor('${c}',this)" onmouseover="this.style.transform='scale(1.2)'" onmouseout="if(this.style.borderColor!='rgb(255, 255, 255)')this.style.transform=''"></div>`).join('');
 }
 
-/* MODAL */
+/* ══ MODAL ══ */
 window.openModal=function(id){currentModalId=id;const p=people.find(x=>x.id===id);if(!p)return;buildModal(p);g('modal').classList.add('open');};
 function rankupSectionHTML(p){
   const cat=currentRankupCat;const data=RANKUP_TIPS[cat];
@@ -1063,6 +1101,7 @@ function rankupSectionHTML(p){
     </div>
   </div>`;
 }
+
 function buildModal(p){
   const ti=tierInfo(p.score||0,p.tierOverride);
   const rank=sorted().findIndex(x=>x.id===p.id)+1;
@@ -1081,9 +1120,32 @@ function buildModal(p){
   const commHTML=pComments.length?pComments.map(c=>`<div class="comment-item"><div class="comment-av" style="background:${c.avatar||'#607d8b'};">${esc(c.name).split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase()}</div><div class="comment-body"><div class="comment-name">${esc(c.name)}</div><div class="comment-text">${esc(c.text)}</div><div class="comment-meta"><span class="comment-time">${timeAgo(c.ts)}</span><button class="comment-del" onclick="deleteComment('${p.id}','${c.id}')">Delete</button></div></div></div>`).join(''):`<div class="comments-empty">No comments yet. Be the first to say something.</div>`;
   const movBadge=moveBadgeHTML(p.id);
   const ovNote=p.tierOverride&&p.tierOverride!=='auto'?`<span style="font-size:10px;color:var(--muted);font-family:'Barlow Condensed',sans-serif;">★ tier manually set</span>`:'';
+  const verified=isVerified(p.id);
+  const verBadge=verified?getVerifiedBadge():'';
+
+  // Peak rank display
+  const peakRankHTML = p.peakRank
+    ? `<span class="peak-rank-badge">🏆 Peak #${p.peakRank}</span>`
+    : '';
+
+  // Linked user display
+  const linkedClaim = claimRequests.find(c=>c.profileId===p.id&&c.status==='verified');
+  const linkedUserLine = linkedClaim
+    ? `<div style="font-size:11px;color:var(--muted2);margin-top:4px;font-family:'Barlow Condensed',sans-serif;">🔗 Linked: ${esc(linkedClaim.displayName||linkedClaim.email||'')}</div>`
+    : '';
+
   g('modal-inner').innerHTML=`
     <div class="modal-hero"><div class="modal-hero-bg" style="${heroStyle}"></div><div class="modal-hero-av" style="background:${p.color||COLORS[0]}">${avInner}</div><div class="modal-hero-rank">Rank #${rank} ${movBadge}</div></div>
-    <div class="modal-nameblock"><div class="mn">${esc(p.name)}</div>${p.nickname?`<div class="mn-nick">${esc(p.nickname)}</div>`:''}<div class="mn-tier"><span class="tbadge"><span class="tpip" style="background:${ti.color}"></span><span style="color:${ti.color};font-size:13px;">${ti.label}</span></span>${ovNote}</div></div>
+    <div class="modal-nameblock">
+      <div class="mn">${esc(p.name)} ${verBadge}</div>
+      ${p.nickname?`<div class="mn-nick">${esc(p.nickname)}</div>`:''}
+      <div class="mn-tier">
+        <span class="tbadge"><span class="tpip" style="background:${ti.color}"></span><span style="color:${ti.color};font-size:13px;">${ti.label}</span></span>
+        ${ovNote}
+        ${peakRankHTML}
+      </div>
+      ${linkedUserLine}
+    </div>
     <div class="mbody">${p.bio?`<div class="mbio">"${esc(p.bio)}"</div>`:''}<div class="mstats-big"><div class="ms"><div class="msl">Score</div><div class="msv" style="color:${ti.color}">${p.score||0}</div></div><div class="ms"><div class="msl">Alpha</div><div class="msv" style="color:#ff8c00">${p.alpha||0}</div></div><div class="ms"><div class="msl">Clout</div><div class="msv" style="color:#5865f2">${p.clout||0}</div></div><div class="ms"><div class="msl">Rizz</div><div class="msv" style="color:#e91e63">${p.rizz||0}</div></div></div><div class="mbar-section"><div class="mbar-title">Breakdown</div>${bars}</div>${trl?`<div class="mtraits">${trl}</div>`:''}</div>
     ${rankupSectionHTML(p)}
     <div class="vote-section"><div class="vote-label">Verdict</div><div class="vote-btns"><button class="vote-btn ${pv.myVote==='over'?'voted-over':''}" id="vbtn-over" onclick="castVote('${p.id}','over')"><span class="vicon">🔥</span><span>Overrated</span><span class="vote-count" id="vc-over">${pv.over||0}</span></button><button class="vote-btn ${pv.myVote==='under'?'voted-under':''}" id="vbtn-under" onclick="castVote('${p.id}','under')"><span class="vicon">💎</span><span>Underdog</span><span class="vote-count" id="vc-under">${pv.under||0}</span></button></div><div class="vote-tally" id="vtally">${total>0?`🔥 ${overPct}% · 💎 ${100-overPct}%<br><span style="font-size:9px;">${total} vote${total!==1?'s':''}</span>`:'<span style="font-size:10px;">No votes yet</span>'}</div></div>
@@ -1126,11 +1188,9 @@ window.deleteComment=async function(pid,cid){if(!confirm('Delete this comment?')
 window.closeMovOv=e=>{if(e.target===g('modal'))closeModal();};
 window.closeModal=function(){g('modal').classList.remove('open');currentModalId=null;currentModalTab='news';};
 
-/* ── AUTH ── ALL functions exposed to window so inline onclick works from module scope */
+/* ── AUTH ── */
 window.openAuthModal=function(mode='login'){renderAuthModal(mode);g('auth-modal').classList.add('open');};
 window.closeAuthModal=function(){g('auth-modal').classList.remove('open');};
-
-// renderAuthModal must be on window because it calls itself recursively from inline onclick
 window.renderAuthModal=function(mode){
   const isLogin=mode==='login';
   g('auth-modal-inner').innerHTML=`
@@ -1146,7 +1206,6 @@ window.renderAuthModal=function(mode){
     <div class="auth-switch">${isLogin?`No account? <a onclick="renderAuthModal('signup')">Create one</a>`:`Have an account? <a onclick="renderAuthModal('login')">Sign in</a>`}</div>
     ${isLogin?`<div class="auth-switch" style="margin-top:8px;"><a onclick="closeAuthModal()" style="color:var(--muted);">Continue without account</a></div>`:''}`;
 };
-
 window.submitAuth=async function(mode){
   const btn=g('auth-submit-btn');const errEl=g('auth-error');
   if(btn)btn.disabled=true;if(errEl)errEl.classList.remove('show');
@@ -1163,7 +1222,6 @@ window.submitAuth=async function(mode){
     window.closeAuthModal();
   }catch(err){
     if(errEl){
-      // Give user-friendly messages instead of Firebase's raw errors
       let msg=err.message;
       if(err.code==='auth/email-already-in-use')msg='An account with this email already exists.';
       else if(err.code==='auth/invalid-email')msg='Please enter a valid email address.';
@@ -1175,11 +1233,9 @@ window.submitAuth=async function(mode){
     if(btn)btn.disabled=false;
   }
 };
-
 window.handleUserBtn=function(){
   if(currentUser)renderUserMenu();else window.openAuthModal('login');
 };
-
 function renderUserMenu(){
   g('auth-modal-inner').innerHTML=`
     <div style="text-align:center;padding:8px 0 20px;">
@@ -1191,10 +1247,9 @@ function renderUserMenu(){
     <button class="auth-btn" onclick="closeAuthModal();setTabByName('joinreq')">🙋 Request Tier List Spot</button>`;
   g('auth-modal').classList.add('open');
 }
-
 window.handleSignOut=async function(){await signOut(auth);window.closeAuthModal();};
 
-/* JOIN REQUEST HELPERS — all on window */
+/* JOIN REQUEST HELPERS */
 window.pickReqColor=function(c,el){
   g('req-color').value=c;
   document.querySelectorAll('#req-swatches div').forEach(s=>s.style.borderColor='transparent');
@@ -1232,57 +1287,67 @@ document.addEventListener('keydown',e=>{
   if(buf.toLowerCase().includes(getCode().toLowerCase())){buf='';unlockDev();}
 });
 function unlockDev(){
-  isAdmin=true;
+  isAdmin=true;myRoles={superadmin:true};
   if(!g('dev-tab')){const d=document.createElement('div');d.className='tab';d.id='dev-tab';d.setAttribute('data-tab','dev');d.innerHTML='<span class="tab-icon">⚙️</span>Admin';d.onclick=()=>setTab(d);g('tabs-bar').appendChild(d);}
   setTab(g('dev-tab'));
 }
-window.devLogout=function(){isAdmin=false;const t=g('dev-tab');if(t)t.remove();setTab(document.querySelector('.tab'));};
+window.devLogout=function(){isAdmin=false;myRoles={};const t=g('dev-tab');if(t)t.remove();setTab(document.querySelector('.tab'));};
+
+// Also unlock for users who have admin roles in Firestore
+function checkFirestoreAdminRole(){
+  if(!currentUser)return;
+  const au = adminUsers.find(u=>u.uid===currentUser.uid);
+  if(au&&au.roles&&Object.values(au.roles).some(v=>v)){
+    isAdmin=true;
+    myRoles=au.roles||{};
+    if(!g('dev-tab')){const d=document.createElement('div');d.className='tab';d.id='dev-tab';d.setAttribute('data-tab','dev');d.innerHTML='<span class="tab-icon">⚙️</span>Admin';d.onclick=()=>setTab(d);g('tabs-bar').appendChild(d);}
+  }
+}
+
 window.setTab=function(el){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');tab=el.getAttribute('data-tab');render();};
 window.setTabByName=function(name){const el=document.querySelector(`[data-tab="${name}"]`);if(el)setTab(el);};
 
-/* ADMIN PANEL */
+/* ══ ADMIN PANEL ══ */
 function renderDev(){
   const pendingCount=joinRequests.filter(r=>r.status==='pending').length;
   const pendingClaims=claimRequests.filter(c=>c.status==='pending').length;
+  const isSuperOrRoles = myRoles.superadmin||myRoles.roles;
+
   g('content').innerHTML=`<div class="dev-wrap">
   <div class="dev-top"><span class="dev-badge">Admin</span><span class="dev-title">Manage Rankings</span><button class="btn btn-sm btn-g" onclick="devLogout()" style="margin-left:auto;">Exit Admin</button></div>
   <div class="alert-msg al-ok" id="al-ok"></div><div class="alert-msg al-err" id="al-err"></div>
 
-  <!-- PRIZE EDITOR -->
-  <div class="dcard" style="margin-bottom:16px;">
-    <div class="dcard-t">🏅 Edit Prizes</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
-      ${['slot1','slot2','slot3'].map((key,i)=>`<div style="background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:12px;">
-        <div style="font-size:10px;font-weight:700;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;font-family:'Barlow Condensed',sans-serif;margin-bottom:10px;">${['1st Place','Grand Prize','3rd Place'][i]}</div>
-        <div class="fg" style="margin-bottom:6px;"><label>Icon (emoji)</label><input id="prize-${key}-icon" value="${esc(prizes[key].icon||'')}" placeholder="🎁" style="font-size:18px;"></div>
-        <div class="fg" style="margin-bottom:6px;"><label>Prize Name</label><input id="prize-${key}-name" value="${esc(prizes[key].name||'')}" placeholder="e.g. $1 Cash"></div>
-        <div class="fg" style="margin-bottom:6px;"><label>Description</label><textarea id="prize-${key}-desc" rows="2" placeholder="Details…" style="min-height:44px;">${esc(prizes[key].desc||'')}</textarea></div>
-        <div class="fg" style="margin-bottom:0;"><label>Win Condition</label><input id="prize-${key}-cond" value="${esc(prizes[key].condition||'')}" placeholder="e.g. #1 when April ends"></div>
-      </div>`).join('')}
-    </div>
-    <button class="btn" onclick="savePrizes()" style="margin-top:12px;">💾 Save Prizes</button>
-  </div>
+  ${can('prizes')?renderPrizeAdminEditor():''}
 
-  <!-- IDENTITY CLAIMS -->
-  <div class="dcard" style="margin-bottom:16px;">
+  ${can('roles')||myRoles.superadmin?`<div class="dcard" style="margin-bottom:16px;">
+    <div class="dcard-t">🛡 Admin Users & Roles</div>
+    ${renderAdminGiveSection()}
+    <div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--border);">
+      <div style="font-size:9px;font-weight:700;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;font-family:'Barlow Condensed',sans-serif;">Current Admins</div>
+      <div id="admin-users-list">${renderAdminUsersList()}</div>
+    </div>
+  </div>`:''}
+
+  ${can('requests')?`<div class="dcard" style="margin-bottom:16px;">
     <div class="dcard-t">🔗 Identity Claim Requests ${pendingClaims>0?`<span style="background:var(--red);color:#fff;border-radius:3px;padding:1px 7px;font-size:9px;margin-left:6px;">${pendingClaims} PENDING</span>`:''}</div>
     <div id="claim-admin-list">${renderClaimAdminList()}</div>
   </div>
 
-  <!-- TIER LIST REQUESTS -->
   <div class="dcard" style="margin-bottom:16px;">
     <div class="dcard-t">🙋 Tier List Requests ${pendingCount>0?`<span style="background:var(--red);color:#fff;border-radius:3px;padding:1px 7px;font-size:9px;margin-left:6px;">${pendingCount} PENDING</span>`:''}</div>
     <div id="req-admin-list">${renderReqAdminList()}</div>
-  </div>
-  <div class="ai-box" id="ai-box">
+  </div>`:''}
+
+  ${can('ai')?`<div class="ai-box" id="ai-box">
     <div class="ai-box-header"><div class="ai-box-icon">🤖</div><div><div class="ai-box-title">AI Score Updater</div><div class="ai-box-sub">Describe what happened — AI adjusts scores and writes a headline automatically.</div></div></div>
     <textarea class="ai-prompt-area" id="ai-prompt" placeholder="e.g. &quot;Jake absolutely bodied everyone at the party last night, full rizz energy…&quot;"></textarea>
     <div class="ai-btn-row"><button class="ai-run-btn" id="ai-run-btn" onclick="runAI()">✦ Analyze &amp; Update</button><span class="ai-status" id="ai-status"></span></div>
     <div class="ai-result" id="ai-result"></div>
-  </div>
+  </div>`:''}
+
   <div class="dgrid">
-    <div>
-      <div class="dcard" style="margin-bottom:16px;">
+    ${can('players')||can('news')?`<div>
+      ${can('players')?`<div class="dcard" style="margin-bottom:16px;">
         <div class="dcard-t" id="form-lbl">Add Profile</div>
         <input type="hidden" id="eid">
         <div class="frow"><div class="fg"><label>Name *</label><input id="fn" placeholder="John Smith"></div><div class="fg"><label>Nickname / Title</label><input id="fnick" placeholder="The Goat"></div></div>
@@ -1302,8 +1367,9 @@ function renderDev(){
           </div>
         </div>
         <div class="btn-row"><button class="btn" onclick="savePerson()">Save Profile</button><button class="btn btn-g" onclick="clearForm()">Clear</button></div>
-      </div>
-      <div class="dcard" style="margin-bottom:16px;">
+      </div>`:''}
+
+      ${can('news')?`<div class="dcard" style="margin-bottom:16px;">
         <div class="dcard-t">Post News Update</div>
         <input type="hidden" id="neid">
         <div class="fg"><label>Headline *</label><input id="nheadline" placeholder="Something big just happened..."></div>
@@ -1312,19 +1378,156 @@ function renderDev(){
         <div class="fg"><label>Tag a Player (optional)</label><select id="nplayer"><option value="">— None —</option></select></div>
         <div class="btn-row"><button class="btn" onclick="saveNews()">Post</button><button class="btn btn-g" onclick="clearNewsForm()">Clear</button></div>
         <div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--border);"><div style="font-size:9px;font-weight:700;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;font-family:'Barlow Condensed',sans-serif;">All News Items</div><div id="nlist"></div></div>
-      </div>
+      </div>`:''}
+
       <div class="dcard"><div class="dcard-t">Change Admin Code</div><div class="frow"><div class="fg"><label>New Code</label><input type="password" id="nc" placeholder="New code"></div><div class="fg"><label>Confirm</label><input type="password" id="cc" placeholder="Confirm"></div></div><button class="btn btn-sm" onclick="changeCode()">Update Code</button></div>
-    </div>
-    <div class="dcard" style="align-self:start;">
+    </div>`:'<div></div>'}
+
+    ${can('players')?`<div class="dcard" style="align-self:start;">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--border);">
         <div class="dcard-t" style="margin:0;padding:0;border:none;">All Profiles</div>
         <button class="btn btn-sm btn-r" onclick="confirmDeleteAll()">Delete All</button>
       </div>
       <div id="dlist"></div>
-    </div>
+    </div>`:''}
   </div></div>`;
-  initSwatches();renderTbox();renderDList();renderNList();populatePlayerSelect();
+
+  if(can('players')){initSwatches();renderTbox();renderDList();}
+  if(can('news')){renderNList();populatePlayerSelect();}
 }
+
+/* ══ PRIZE ADMIN EDITOR ══ */
+function renderPrizeAdminEditor(){
+  const slots = prizeConfig.slots||[];
+  const slotEditors = slots.map((sl,idx)=>`
+    <div class="prize-slot-editor">
+      <div class="prize-slot-editor-header">
+        <div class="prize-slot-editor-title">Slot ${idx+1} — ${sl.posLabel||'Prize'}</div>
+        <button class="btn btn-sm btn-r" onclick="removePrizeSlot(${idx})">Remove</button>
+      </div>
+      <div class="frow">
+        <div class="fg"><label>Position Icon</label><input id="psl-posIcon-${idx}" value="${esc(sl.posIcon||'')}" placeholder="🥇" style="font-size:18px;"></div>
+        <div class="fg"><label>Position Label</label><input id="psl-posLabel-${idx}" value="${esc(sl.posLabel||'')}" placeholder="1st Place"></div>
+      </div>
+      <div class="frow">
+        <div class="fg"><label>Prize Icon</label><input id="psl-icon-${idx}" value="${esc(sl.icon||'')}" placeholder="🏆" style="font-size:18px;"></div>
+        <div class="fg"><label>Prize Name</label><input id="psl-name-${idx}" value="${esc(sl.name||'')}" placeholder="e.g. $1 Cash"></div>
+      </div>
+      <div class="fg"><label>Description</label><textarea id="psl-desc-${idx}" rows="2" style="min-height:44px;">${esc(sl.desc||'')}</textarea></div>
+      <div class="fg"><label>Win Condition</label><input id="psl-cond-${idx}" value="${esc(sl.condition||'')}" placeholder="e.g. #1 when month ends"></div>
+      <div class="fg"><label><input type="checkbox" id="psl-grand-${idx}" ${sl.grand?'checked':''} style="width:auto;margin-right:6px;">Mark as Grand Prize (gold glow)</label></div>
+    </div>`).join('');
+
+  return`<div class="dcard" style="margin-bottom:16px;">
+    <div class="dcard-t">🏅 Prize Configuration</div>
+
+    <div class="frow" style="margin-bottom:12px;">
+      <div class="fg"><label>Month Name</label><input id="prize-month" value="${esc(prizeConfig.month||'April')}" placeholder="April"></div>
+      <div class="fg"><label>Deadline (datetime-local)</label><input type="datetime-local" id="prize-deadline" value="${(prizeConfig.deadlineISO||'2025-05-01T00:00:00').slice(0,16)}"></div>
+    </div>
+
+    <div style="font-size:9px;font-weight:700;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;font-family:'Barlow Condensed',sans-serif;">Prize Slots</div>
+    <div id="prize-slots-editor">${slotEditors}</div>
+
+    <div class="btn-row">
+      <button class="btn btn-g btn-sm" onclick="addPrizeSlot()">+ Add Slot</button>
+      <button class="btn" onclick="savePrizes()">💾 Save Prize Config</button>
+    </div>
+  </div>`;
+}
+
+window.addPrizeSlot=function(){
+  prizeConfig.slots = prizeConfig.slots||[];
+  prizeConfig.slots.push({pos:prizeConfig.slots.length+1,posLabel:`Prize ${prizeConfig.slots.length+1}`,posIcon:'🎁',icon:'🎁',name:'',desc:'',condition:'',grand:false});
+  if(tab==='dev')renderDev();
+};
+window.removePrizeSlot=function(idx){
+  prizeConfig.slots.splice(idx,1);
+  if(tab==='dev')renderDev();
+};
+
+window.savePrizes=async function(){
+  const slots = (prizeConfig.slots||[]).map((_,idx)=>({
+    pos:idx+1,
+    posIcon:(g(`psl-posIcon-${idx}`)||{value:''}).value.trim()||'🎁',
+    posLabel:(g(`psl-posLabel-${idx}`)||{value:''}).value.trim()||`Prize ${idx+1}`,
+    icon:(g(`psl-icon-${idx}`)||{value:''}).value.trim()||'🎁',
+    name:(g(`psl-name-${idx}`)||{value:''}).value.trim(),
+    desc:(g(`psl-desc-${idx}`)||{value:''}).value.trim(),
+    condition:(g(`psl-cond-${idx}`)||{value:''}).value.trim(),
+    grand:!!(g(`psl-grand-${idx}`)&&g(`psl-grand-${idx}`).checked),
+  }));
+  const month = (g('prize-month')||{value:'April'}).value.trim()||'April';
+  const deadlineRaw = (g('prize-deadline')||{value:''}).value;
+  const deadlineISO = deadlineRaw ? new Date(deadlineRaw).toISOString() : prizeConfig.deadlineISO;
+
+  setSyncStatus('syncing');
+  await setDoc(doc(db,'config','prizes'),{month,deadlineISO,slots});
+  prizeConfig={month,deadlineISO,slots};
+  setSyncStatus('live');
+  showAlert('ok','Prize config saved!');
+};
+
+/* ══ ADMIN ROLES ══ */
+function renderAdminGiveSection(){
+  return`<div style="margin-bottom:12px;">
+    <div style="font-size:9px;font-weight:700;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;font-family:'Barlow Condensed',sans-serif;">Grant Admin Access</div>
+    <div class="frow"><div class="fg"><label>User Email</label><input id="admin-give-email" placeholder="user@email.com"></div><div class="fg"><label>Display Name (optional)</label><input id="admin-give-name" placeholder="John"></div></div>
+    <div style="font-size:9px;font-weight:700;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;font-family:'Barlow Condensed',sans-serif;margin-top:4px;">Permissions</div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;">
+      ${ALL_ROLES.map(r=>`<label style="display:flex;align-items:center;gap:5px;font-size:12px;color:var(--muted2);cursor:pointer;"><input type="checkbox" id="give-role-${r.key}" style="width:auto;"> ${r.label}</label>`).join('')}
+    </div>
+    <button class="btn btn-sm" onclick="grantAdminRole()">Grant Access</button>
+  </div>`;
+}
+
+function renderAdminUsersList(){
+  if(!adminUsers.length) return `<div style="color:var(--muted);font-size:12px;font-style:italic;">No admin users yet.</div>`;
+  return adminUsers.map(u=>{
+    const roleChips = ALL_ROLES.map(r=>`<span class="role-chip ${u.roles&&u.roles[r.key]?'on':'off'}" onclick="toggleAdminRole('${u.id}','${r.key}')" title="${r.label}">${r.label}</span>`).join('');
+    return`<div class="admin-user-item">
+      <div style="width:36px;height:36px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff;flex-shrink:0;font-family:'Barlow Condensed',sans-serif;">${(u.displayName||u.email||'?').charAt(0).toUpperCase()}</div>
+      <div class="admin-user-info">
+        <div class="admin-user-name">${esc(u.displayName||u.email||'Unknown')}</div>
+        <div class="admin-user-email">${esc(u.email||'')}</div>
+        <div class="admin-user-roles">${roleChips}</div>
+      </div>
+      <button class="btn btn-sm btn-r" onclick="revokeAdmin('${u.id}')">Revoke</button>
+    </div>`;
+  }).join('');
+}
+
+window.grantAdminRole=async function(){
+  const email=(g('admin-give-email')||{value:''}).value.trim();
+  const name=(g('admin-give-name')||{value:''}).value.trim();
+  if(!email){showAlert('err','Email required.');return;}
+  const roles={};ALL_ROLES.forEach(r=>{roles[r.key]=!!(g(`give-role-${r.key}`)&&g(`give-role-${r.key}`).checked);});
+  // Check if any role is on
+  if(!Object.values(roles).some(v=>v)){showAlert('err','Select at least one permission.');return;}
+  setSyncStatus('syncing');
+  // Use email as doc id (sanitized)
+  const docId='admin_'+email.replace(/[^a-zA-Z0-9]/g,'_');
+  await setDoc(doc(db,'adminUsers',docId),{email,displayName:name,roles,grantedAt:Date.now(),uid:''},{merge:true});
+  showAlert('ok',`Admin access granted to ${email}`);
+  const el=g('admin-give-email');if(el)el.value='';
+  const nl=g('admin-give-name');if(nl)nl.value='';
+  ALL_ROLES.forEach(r=>{const cb=g(`give-role-${r.key}`);if(cb)cb.checked=false;});
+  setSyncStatus('live');
+};
+
+window.toggleAdminRole=async function(adminDocId,roleKey){
+  const au=adminUsers.find(u=>u.id===adminDocId);if(!au)return;
+  const newVal=!(au.roles&&au.roles[roleKey]);
+  const updatedRoles={...(au.roles||{}),[roleKey]:newVal};
+  await updateDoc(doc(db,'adminUsers',adminDocId),{roles:updatedRoles});
+  showAlert('ok','Role updated.');
+};
+
+window.revokeAdmin=async function(adminDocId){
+  if(!confirm('Revoke all admin access for this user?'))return;
+  await deleteDoc(doc(db,'adminUsers',adminDocId));
+  showAlert('ok','Admin access revoked.');
+};
 
 function renderReqAdminList(){
   if(!joinRequests.length)return`<div class="req-empty">No requests yet.</div>`;
@@ -1352,7 +1555,7 @@ window.approveRequest=async function(reqId){
   const r=joinRequests.find(x=>x.id===reqId);if(!r)return;
   setSyncStatus('syncing');
   const id='p'+Date.now();
-  await setDoc(doc(db,'people',id),{id,name:r.name,nickname:r.nickname||'',bio:r.bio||'',photo:r.photo||'',color:r.color||COLORS[0],alpha:50,clout:50,rizz:50,score:50,traits:[],tierOverride:'auto'});
+  await setDoc(doc(db,'people',id),{id,name:r.name,nickname:r.nickname||'',bio:r.bio||'',photo:r.photo||'',color:r.color||COLORS[0],alpha:50,clout:50,rizz:50,score:50,traits:[],tierOverride:'auto',peakRank:null,peakRankTs:null});
   await updateDoc(doc(db,'joinRequests',reqId),{status:'approved'});
   await addDoc(collection(db,'news'),{headline:`${r.name} just joined the Alpha Max tier list! 🔥`,type:'manual',ts:Date.now(),mentionedIds:[id],image:r.photo||''});
   setSyncStatus('live');showAlert('ok',`${r.name} approved & added!`);
@@ -1425,7 +1628,8 @@ window.savePerson=async function(){
   const eid=(g('eid')||{value:''}).value;const id=eid||'p'+Date.now();
   const before={};sorted().forEach((p,i)=>before[p.id]=i+1);
   const alpha=clamp(parseInt((g('falpha')||{value:50}).value));const cl=clamp(parseInt((g('fclout')||{value:50}).value));const rizz=clamp(parseInt((g('frizz')||{value:50}).value));const score=cs(alpha,cl,rizz);
-  const p={id,name,nickname:(g('fnick')||{value:''}).value.trim(),score,alpha,clout:cl,rizz,bio:(g('fbio')||{value:''}).value.trim(),photo:getPhotoVal(),color:selColor,traits:[...traits],tierOverride:selTierOverride};
+  const existing = people.find(x=>x.id===id);
+  const p={id,name,nickname:(g('fnick')||{value:''}).value.trim(),score,alpha,clout:cl,rizz,bio:(g('fbio')||{value:''}).value.trim(),photo:getPhotoVal(),color:selColor,traits:[...traits],tierOverride:selTierOverride,peakRank:existing?.peakRank||null,peakRankTs:existing?.peakRankTs||null};
   await setDoc(doc(db,'people',id),p);
   if(eid)await checkRankChanges(before);
   clearForm();renderDList();populatePlayerSelect();showAlert('ok',eid?'Profile updated.':'Profile added.');setSyncStatus('live');
@@ -1463,7 +1667,8 @@ function renderDList(){
     const st=`background:${p.color||COLORS[0]};width:34px;height:34px;border-radius:5px;font-size:11px;font-weight:800;color:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden;font-family:'Barlow Condensed',sans-serif;flex-shrink:0;`;
     const av=p.photo?`<img src="${p.photo}" style="width:100%;height:100%;object-fit:cover;border-radius:5px;" onerror="this.style.display='none'">`:`${init}`;
     const ovTxt=p.tierOverride&&p.tierOverride!=='auto'?` · ★${p.tierOverride}`:'';
-    return`<div class="dli"><div class="dli-av" style="${st}">${av}</div><div class="dli-info"><div class="dli-name">#${i+1} ${esc(p.name)}</div><div class="dli-meta" style="color:${ti.color}">${ti.label}${ovTxt} · ${p.score||0} pts</div></div><div class="dli-btns"><button class="btn btn-sm btn-g" onclick="editPerson('${p.id}')">Edit</button><button class="btn btn-sm btn-r" onclick="deletePerson('${p.id}','${p.name.replace(/'/g,"\\'")}')">Del</button></div></div>`;
+    const vMark=isVerified(p.id)?` ✓`:'';
+    return`<div class="dli"><div class="dli-av" style="${st}">${av}</div><div class="dli-info"><div class="dli-name">#${i+1} ${esc(p.name)}${vMark}</div><div class="dli-meta" style="color:${ti.color}">${ti.label}${ovTxt} · ${p.score||0} pts${p.peakRank?` · Peak #${p.peakRank}`:''}</div></div><div class="dli-btns"><button class="btn btn-sm btn-g" onclick="editPerson('${p.id}')">Edit</button><button class="btn btn-sm btn-r" onclick="deletePerson('${p.id}','${p.name.replace(/'/g,"\\'")}')">Del</button></div></div>`;
   }).join('');
 }
 window.saveNews=async function(){
@@ -1486,26 +1691,7 @@ function renderNList(){
 window.changeCode=function(){const n=(g('nc')||{value:''}).value,c=(g('cc')||{value:''}).value;if(!n){showAlert('err','Enter a code.');return;}if(n!==c){showAlert('err','Codes don\'t match.');return;}setCode(n);g('nc').value='';g('cc').value='';showAlert('ok','Updated.');};
 function showAlert(type,msg){const el=g('al-'+(type==='ok'?'ok':'err'));if(!el)return;el.textContent=(type==='ok'?'✓ ':'✗ ')+msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),3000);}
 
-/* ══ PRIZES ADMIN ══ */
-window.savePrizes=async function(){
-  const keys=['slot1','slot2','slot3'];
-  const updated={};
-  keys.forEach(k=>{
-    updated[k]={
-      icon:(g(`prize-${k}-icon`)||{value:''}).value.trim()||'🎁',
-      name:(g(`prize-${k}-name`)||{value:''}).value.trim(),
-      desc:(g(`prize-${k}-desc`)||{value:''}).value.trim(),
-      condition:(g(`prize-${k}-cond`)||{value:''}).value.trim(),
-    };
-  });
-  setSyncStatus('syncing');
-  await setDoc(doc(db,'config','prizes'),updated);
-  prizes=updated;
-  setSyncStatus('live');
-  showAlert('ok','Prizes saved!');
-};
-
-/* ══ CLAIM ADMIN ══ */
+/* CLAIM ADMIN */
 function renderClaimAdminList(){
   if(!claimRequests.length)return`<div class="req-empty">No identity claims yet.</div>`;
   return claimRequests.map(c=>{
@@ -1527,13 +1713,15 @@ function renderClaimAdminList(){
 }
 window.verifyClaim=async function(cid){
   const c=claimRequests.find(x=>x.id===cid);if(!c)return;
-  // Deny any other pending claims for the same profile
   for(const other of claimRequests){
     if(other.id!==cid&&other.profileId===c.profileId&&other.status==='pending'){
       await updateDoc(doc(db,'claimRequests',other.id),{status:'denied'});
     }
   }
   await updateDoc(doc(db,'claimRequests',cid),{status:'verified'});
+  // Also update adminUsers uid if we find a match
+  const au=adminUsers.find(u=>u.email===c.email);
+  if(au)await updateDoc(doc(db,'adminUsers',au.id),{uid:c.uid});
   showAlert('ok','Identity verified!');
 };
 window.denyClaim=async function(cid){
@@ -1549,7 +1737,9 @@ window.deleteClaim=async function(cid){
 
 /* ══ FIRESTORE LISTENERS ══ */
 onAuthStateChanged(auth,user=>{
-  currentUser=user;updateUserHeader();if(tab==='joinreq')render();
+  currentUser=user;updateUserHeader();
+  checkFirestoreAdminRole();
+  if(tab==='joinreq')render();
 });
 function updateUserHeader(){
   const btn=g('user-btn'),av=g('user-av'),lbl=g('user-btn-label');if(!btn)return;
@@ -1557,25 +1747,32 @@ function updateUserHeader(){
   else{av.textContent='?';lbl.textContent='Sign In';}
 }
 
-/* FIRESTORE LISTENERS */
 onSnapshot(collection(db,'people'),snap=>{
   const wasEmpty=people.length===0;
   people=snap.docs.map(d=>({...d.data(),id:d.id}));
-  computeMovements();if(!wasEmpty)updatePrevRanks();
+  computeMovements();
+  if(!wasEmpty){
+    updatePrevRanks();
+    // Update peak ranks whenever scores change
+    updatePeakRankIfNeeded();
+  }
   setSyncStatus('live');render();
-  if(tab==='dev'){renderDList();populatePlayerSelect();}
+  if(tab==='dev'&&can('players')){renderDList();if(can('news'))populatePlayerSelect();}
   if(currentModalId){const p=people.find(x=>x.id===currentModalId);if(p)buildModal(p);}
 });
+
 onSnapshot(query(collection(db,'news'),orderBy('ts','desc')),snap=>{
   newsItems=snap.docs.map(d=>({...d.data(),id:d.id}));
-  if(tab==='news')renderNewsPage();if(tab==='dev')renderNList();
+  if(tab==='news')renderNewsPage();if(tab==='dev'&&can('news'))renderNList();
   if(currentModalId&&currentModalTab==='news'){const p=people.find(x=>x.id===currentModalId);if(p)buildModal(p);}
 });
+
 onSnapshot(collection(db,'comments'),snap=>{
   comments={};
   snap.docs.forEach(d=>{const c={...d.data(),id:d.id};if(!comments[c.pid])comments[c.pid]=[];comments[c.pid].push(c);});
   if(currentModalId&&currentModalTab==='comments'){const p=people.find(x=>x.id===currentModalId);if(p)buildModal(p);}
 });
+
 onSnapshot(query(collection(db,'joinRequests'),orderBy('ts','desc')),snap=>{
   joinRequests=snap.docs.map(d=>({...d.data(),id:d.id}));
   const pendingCount=joinRequests.filter(r=>r.status==='pending').length;
@@ -1583,24 +1780,31 @@ onSnapshot(query(collection(db,'joinRequests'),orderBy('ts','desc')),snap=>{
   if(devTab&&pendingCount>0){const existing=devTab.querySelector('.tab-badge');if(existing)existing.remove();const badge=document.createElement('div');badge.className='tab-badge';badge.textContent=pendingCount;devTab.appendChild(badge);}
   else if(devTab){const existing=devTab.querySelector('.tab-badge');if(existing)existing.remove();}
   if(tab==='joinreq')renderJoinRequest();
-  if(tab==='dev'){const el=g('req-admin-list');if(el)el.innerHTML=renderReqAdminList();}
+  if(tab==='dev'&&can('requests')){const el=g('req-admin-list');if(el)el.innerHTML=renderReqAdminList();}
 });
+
 onSnapshot(query(collection(db,'claimRequests'),orderBy('ts','desc')),snap=>{
   claimRequests=snap.docs.map(d=>({...d.data(),id:d.id}));
-  const pendingClaims=claimRequests.filter(c=>c.status==='pending').length;
-  // Badge on dev tab (combined with join requests)
-  const devTab=g('dev-tab');
-  if(devTab){
-    const existing=devTab.querySelector('.tab-badge');if(existing)existing.remove();
-    const total=(joinRequests.filter(r=>r.status==='pending').length)+pendingClaims;
-    if(total>0){const badge=document.createElement('div');badge.className='tab-badge';badge.textContent=total;devTab.appendChild(badge);}
-  }
   if(tab==='joinreq')renderJoinRequest();
-  if(tab==='dev'){const el=g('claim-admin-list');if(el)el.innerHTML=renderClaimAdminList();}
+  if(tab==='dev'&&can('requests')){const el=g('claim-admin-list');if(el)el.innerHTML=renderClaimAdminList();}
+  // refresh rankings to show/hide verify badges
+  if(tab!=='dev'&&tab!=='joinreq')render();
+  if(currentModalId){const p=people.find(x=>x.id===currentModalId);if(p)buildModal(p);}
 });
-// Prizes config listener
+
+// Admin users listener
+onSnapshot(collection(db,'adminUsers'),snap=>{
+  adminUsers=snap.docs.map(d=>({...d.data(),id:d.id}));
+  checkFirestoreAdminRole();
+  if(tab==='dev'&&(can('roles')||myRoles.superadmin)){const el=g('admin-users-list');if(el)el.innerHTML=renderAdminUsersList();}
+});
+
+// Prize config listener
 onSnapshot(doc(db,'config','prizes'),snap=>{
-  if(snap.exists()){prizes={...prizes,...snap.data()};}
+  if(snap.exists()){
+    const data=snap.data();
+    prizeConfig={...prizeConfig,...data};
+  }
   if(tab==='prizes')renderPrizePage();
 });
 </script>
