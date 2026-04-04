@@ -57,9 +57,9 @@ body{font-family:'Barlow',sans-serif;color:var(--text);font-size:14px;overflow:h
 .request-btn{display:flex;align-items:center;gap:7px;background:linear-gradient(135deg,#ff4757,#b02030);color:#fff;border:none;padding:7px 16px;border-radius:6px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:opacity .15s,transform .15s;white-space:nowrap;}
 .request-btn:hover{opacity:.85;transform:translateY(-1px);}
 
-/* VERIFY BADGE */
-.verify-badge{display:inline-flex;align-items:center;gap:3px;background:rgba(46,213,115,.12);border:1px solid rgba(46,213,115,.3);color:var(--green);font-size:9px;font-weight:800;letter-spacing:1px;padding:2px 6px;border-radius:3px;font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;}
-.verify-icon{font-size:10px;}
+/* VERIFY BADGE — subtle white checkmark only */
+.verify-badge{display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;background:rgba(255,255,255,.18);border-radius:50%;font-size:9px;line-height:1;flex-shrink:0;vertical-align:middle;margin-left:3px;}
+.verify-icon{color:#fff;font-size:9px;}
 
 /* TABS */
 .tabs-bar{background:rgba(13,15,26,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);display:flex;overflow-x:auto;scrollbar-width:none;flex-shrink:0;position:relative;z-index:19;}
@@ -207,8 +207,9 @@ body{font-family:'Barlow',sans-serif;color:var(--text);font-size:14px;overflow:h
 .mbar-fill{height:100%;border-radius:4px;transition:width .7s cubic-bezier(.22,1,.36,1);}
 .mbar-val{font-size:13px;font-weight:700;color:var(--text);width:28px;text-align:right;font-family:'Barlow Condensed',sans-serif;}
 
-/* PEAK RANK */
-.peak-rank-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(240,165,0,.1);border:1px solid rgba(240,165,0,.25);color:var(--gold);font-size:10px;font-weight:800;letter-spacing:1px;padding:3px 8px;border-radius:4px;font-family:'Barlow Condensed',sans-serif;}
+/* PEAK RANK — prominent banner */
+.peak-rank-badge{display:inline-flex;align-items:center;gap:5px;background:linear-gradient(135deg,rgba(240,165,0,.2),rgba(240,165,0,.08));border:1px solid rgba(240,165,0,.4);color:var(--gold);font-size:11px;font-weight:800;letter-spacing:1px;padding:4px 10px;border-radius:5px;font-family:'Barlow Condensed',sans-serif;text-shadow:0 0 12px rgba(240,165,0,.5);}
+.peak-rank-row{padding:10px 22px 0;display:flex;align-items:center;gap:10px;}
 
 .rankup-section{margin:0 22px 16px;background:var(--bg3);border:1px solid var(--border);border-radius:8px;overflow:hidden;}
 .rankup-header{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;cursor:pointer;user-select:none;transition:background .15s;}
@@ -538,7 +539,7 @@ body{font-family:'Barlow',sans-serif;color:var(--text);font-size:14px;overflow:h
     <div class="tab active" data-tab="news"    onclick="setTab(this)"><span class="tab-icon">📰</span>News</div>
     <div class="tab"        data-tab="overall" onclick="setTab(this)"><span class="tab-icon">🏆</span>Overall</div>
     <div class="tab"        data-tab="alpha"   onclick="setTab(this)"><span class="tab-icon">⚡</span>Alpha</div>
-    <div class="tab"        data-tab="clout"   onclick="setTab(this)"><span class="tab-icon">👑</span>Clout</div>
+    <div class="tab"        data-tab="clout"   onclick="setTab(this)"><span class="tab-icon">👑</span>Aura</div>
     <div class="tab"        data-tab="rizz"    onclick="setTab(this)"><span class="tab-icon">🔥</span>Rizz</div>
     <div class="tab"        data-tab="tier"    onclick="setTab(this)"><span class="tab-icon">📊</span>Tier List</div>
     <div class="tab"        data-tab="prizes"  onclick="setTab(this)" id="prizes-tab"><span class="tab-icon">🏅</span>Prizes</div>
@@ -625,7 +626,7 @@ const sortedBy=k   => [...people].sort((a,b)=>(b[k]||0)-(a[k]||0));
 let people=[], newsItems=[], comments={}, joinRequests=[], claimRequests=[], adminUsers=[];
 let prizeConfig = {
   month: 'April',
-  deadlineISO: '2025-05-01T00:00:00',
+  deadlineISO: '2026-05-01T00:00:00',
   slots: [
     {pos:1, posLabel:'1st Place', posIcon:'🥇', icon:'🏆', name:'', desc:'', condition:'', grand:false},
     {pos:2, posLabel:'Grand Prize', posIcon:'💰', icon:'💵', name:'$1 Cash Prize', desc:'Winner takes all — one crisp dollar, straight to your pocket.', condition:'#1 on the overall tier list when the month ends', grand:true},
@@ -643,7 +644,7 @@ let countdownTimer=null;
 
 const RANKUP_TIPS={
   alpha:{icon:'⚡',label:'Alpha Score',tips:['Take charge in group settings — be the one who makes the call.','Stand firm on your opinions; don\'t flip when challenged.','Make bold moves others are afraid to take.','Speak first in the room. Silence signals uncertainty.','Own every outcome — your successes AND your L\'s.','Dress intentionally. Presentation signals status.']},
-  clout:{icon:'👑',label:'Clout',tips:['Build your network — who you know matters as much as what you do.','Be seen at the right events and in the right circles.','Post wins publicly. Clout is a public sport.','Get people talking about you when you\'re not in the room.','Align yourself with people who are already rated highly.','Achieve something others genuinely can\'t ignore.']},
+  clout:{icon:'👑',label:'Aura',tips:['Build your network — who you know matters as much as what you do.','Be seen at the right events and in the right circles.','Post wins publicly. Aura is a public sport.','Get people talking about you when you\'re not in the room.','Align yourself with people who are already rated highly.','Achieve something others genuinely can\'t ignore.']},
   rizz:{icon:'🔥',label:'Rizz Factor',tips:['Rizz someone up — sustained charm earns serious points.','Eye contact, timing, and confidence are the holy trinity.','Make people feel like the most interesting person in the room.','Have stories. Boring people don\'t have rizz.','Learn the art of the callback — remember details about people.','Never try too hard. The best rizz looks effortless.']}
 };
 
@@ -683,25 +684,36 @@ function isVerified(playerId){
   return claimRequests.some(c=>c.profileId===playerId && c.status==='verified');
 }
 function getVerifiedBadge(){
-  return `<span class="verify-badge"><span class="verify-icon">✓</span>VERIFIED</span>`;
+  return `<span class="verify-badge" title="Verified identity"><span class="verify-icon">✓</span></span>`;
 }
 
+const PSK='alphamax_score_prev';
+const getPrevScores= ()  => { try{return JSON.parse(localStorage.getItem(PSK))||{};}catch{return{};} };
+const setPrevScores= s   => localStorage.setItem(PSK,JSON.stringify(s));
+
 function computeMovements(){
-  const pr=getPrevRanks();rankMovements={};
+  const pr=getPrevRanks();const ps=getPrevScores();rankMovements={};
   sorted().forEach((p,i)=>{
     const newR=i+1,oldR=pr[p.id];
-    if(!oldR)rankMovements[p.id]={type:'new',delta:0};
-    else if(oldR>newR)rankMovements[p.id]={type:'up',delta:oldR-newR};
-    else if(oldR<newR)rankMovements[p.id]={type:'down',delta:newR-oldR};
-    else rankMovements[p.id]={type:'same',delta:0};
+    const scoreDelta = ps[p.id]!=null ? (p.score||0)-ps[p.id] : null;
+    if(!oldR)rankMovements[p.id]={type:'new',delta:0,scoreDelta};
+    else if(oldR>newR)rankMovements[p.id]={type:'up',delta:oldR-newR,scoreDelta};
+    else if(oldR<newR)rankMovements[p.id]={type:'down',delta:newR-oldR,scoreDelta};
+    else rankMovements[p.id]={type:'same',delta:0,scoreDelta};
   });
 }
-function updatePrevRanks(){const cur={};sorted().forEach((p,i)=>cur[p.id]=i+1);setPrevRanks(cur);}
+function updatePrevRanks(){
+  const curR={};sorted().forEach((p,i)=>curR[p.id]=i+1);setPrevRanks(curR);
+  const curS={};sorted().forEach(p=>curS[p.id]=p.score||0);setPrevScores(curS);
+}
 function moveBadgeHTML(id){
   const m=rankMovements[id];if(!m||m.type==='same')return'';
+  const pts = m.scoreDelta!=null && m.scoreDelta!==0
+    ? `<span style="font-size:9px;opacity:.75;margin-left:1px;">${m.scoreDelta>0?'+':''}${m.scoreDelta}pts</span>`
+    : '';
   if(m.type==='new')return`<span class="rank-move new">NEW</span>`;
-  if(m.type==='up') return`<span class="rank-move up">▲ ${m.delta}</span>`;
-  if(m.type==='down')return`<span class="rank-move down">▼ ${m.delta}</span>`;
+  if(m.type==='up') return`<span class="rank-move up">▲ ${m.delta} ${pts}</span>`;
+  if(m.type==='down')return`<span class="rank-move down">▼ ${m.delta} ${pts}</span>`;
   return'';
 }
 function avSmall(p,sz,r){
@@ -911,7 +923,27 @@ function renderClaimForm(){
     <button class="btn" id="claim-submit-btn" onclick="submitClaim()" style="display:none;width:100%;">Request Verification ⚡</button>`;
 }
 
+function afterRenderClaimForm(){
+  // Auto-select if coming from a profile modal link
+  if(claimTargetProfileId){
+    const el=g('cp-'+claimTargetProfileId);
+    if(el&&!el.classList.contains('taken')){
+      window.selectClaimProfile(claimTargetProfileId,el);
+      el.scrollIntoView({behavior:'smooth',block:'center'});
+    }
+    claimTargetProfileId=null;
+  }
+}
+
 let selectedClaimProfileId=null;
+let claimTargetProfileId=null; // pre-select a profile when coming from a modal link
+
+window.openClaimForProfile=function(profileId){
+  claimTargetProfileId=profileId;
+  closeModal();
+  setTabByName('joinreq');
+};
+
 window.selectClaimProfile=function(id,el){
   selectedClaimProfileId=id;
   document.querySelectorAll('.claim-player-card').forEach(c=>c.classList.remove('selected'));
@@ -979,7 +1011,7 @@ function renderRankings(){
   const key=tab==='overall'?'score':tab;
   const ppl=sortedBy(key);
   if(!ppl.length){g('content').innerHTML=`<div class="empty">No one ranked yet.<br><small style="color:var(--muted)">Type the admin code anywhere to add profiles.</small></div>`;return;}
-  const label={overall:'Overall Score',alpha:'Alpha Score',clout:'Clout',rizz:'Rizz Factor'}[tab]||'Score';
+  const label={overall:'Overall Score',alpha:'Alpha Score',clout:'Aura',rizz:'Rizz Factor'}[tab]||'Score';
   const overallOrder=sorted().map(p=>p.id);
   let h=`<div class="list-header"><div>#&nbsp;&nbsp;Player</div><div></div><div style="text-align:right">${label}</div></div>`;
   ppl.forEach((p,i)=>{
@@ -1010,7 +1042,7 @@ function renderTierList(){
   tList.forEach(t=>{
     const m=people.filter(p=>tierInfo(p.score||0,p.tierOverride).label===t.label).sort((a,b)=>(b.score||0)-(a.score||0));
     const cards=m.length?m.map(p=>{
-      const vBadge=isVerified(p.id)?`<span style="font-size:8px;color:var(--green);font-family:'Barlow Condensed',sans-serif;font-weight:800;">✓</span>`:'';
+      const vBadge=isVerified(p.id)?`<span style="display:inline-flex;align-items:center;justify-content:center;width:12px;height:12px;background:rgba(255,255,255,.2);border-radius:50%;font-size:8px;color:#fff;vertical-align:middle;margin-left:2px;">✓</span>`:'';
       return`<div onclick="openModal('${p.id}')" style="display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;transition:transform .18s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform=''">
         ${avSmall(p,52,6)}<div style="font-size:10px;font-weight:700;color:var(--text);max-width:58px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:'Barlow Condensed',sans-serif;">${esc(p.name.split(' ')[0])} ${vBadge}</div>
         <div style="font-size:10px;color:${t.color};font-family:'Barlow Condensed',sans-serif;font-weight:700;">${p.score||0}</div></div>`;
@@ -1030,54 +1062,122 @@ function renderTierList(){
 /* JOIN REQUEST */
 function renderJoinRequest(){
   if(!currentUser){
-    g('content').innerHTML=`<div class="req-page"><div class="req-login-prompt">
-      <span class="req-login-prompt-icon">🔐</span>
-      <div style="font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:900;margin-bottom:10px;">Sign In First</div>
-      <p style="color:var(--muted2);line-height:1.7;margin-bottom:20px;">You need an account to request being added to the tier list.</p>
-      <button class="req-submit-btn" style="max-width:220px;margin:0 auto;" onclick="openAuthModal('login')">Sign In / Create Account</button>
-    </div></div>`;
+    g('content').innerHTML=`<div class="req-page">
+      <div class="req-header">
+        <span class="req-header-icon">🔗</span>
+        <div class="req-title">Link Your Identity</div>
+        <p class="req-sub">Already on the tier list? Verify your identity to unlock prize eligibility and get a ✓ badge on your profile.</p>
+      </div>
+      <div class="claim-section" style="margin-top:0;">
+        <div class="claim-section-sub" style="margin-bottom:16px;">Sign in first to claim your spot on the list.</div>
+        <button class="req-submit-btn" onclick="openAuthModal('login')">Sign In / Create Account</button>
+      </div>
+      <div style="margin-top:32px;padding-top:24px;border-top:1px solid var(--border);text-align:center;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">Not on the list yet?</div>
+        <p style="font-size:13px;color:var(--muted2);line-height:1.6;">Sign in first, then you can request to be added below.</p>
+      </div>
+    </div>`;
     return;
   }
+
   const existing=joinRequests.find(r=>r.uid===currentUser.uid);
+  const linkedP=myLinkedProfile();
+  const claim=myClaimStatus();
+
+  // Build identity section HTML inline so it's always at the top
+  let identityHTML='';
+  if(linkedP){
+    identityHTML=`<div class="claim-section" style="margin-top:0;margin-bottom:24px;">
+      <div class="claim-section-title">🔗 Identity Verified</div>
+      <div class="claim-status">
+        <div class="claim-status-dot verified"></div>
+        <div class="claim-status-text">✅ Verified as <strong>${esc(linkedP.name)}</strong></div>
+        <div class="claim-status-meta">Rank #${sorted().findIndex(x=>x.id===linkedP.id)+1}</div>
+      </div>
+      <p style="font-size:12px;color:var(--muted2);margin-top:8px;">Your account is linked to <strong>${esc(linkedP.name)}</strong>. You're eligible for prize payouts — admins will reach you at ${esc(currentUser.email||'')}.</p>
+    </div>`;
+  } else if(claim&&claim.status==='pending'){
+    const cp=people.find(x=>x.id===claim.profileId);
+    identityHTML=`<div class="claim-section" style="margin-top:0;margin-bottom:24px;">
+      <div class="claim-section-title">🔗 Claim Pending</div>
+      <div class="claim-status">
+        <div class="claim-status-dot pending"></div>
+        <div class="claim-status-text">⏳ Waiting for admin to verify your claim${cp?' as <strong>'+esc(cp.name)+'</strong>':''}</div>
+      </div>
+      <p style="font-size:12px;color:var(--muted2);margin-top:8px;">Admins will confirm you're really ${cp?esc(cp.name):'this person'} before granting the verified badge.</p>
+    </div>`;
+  } else if(claim&&claim.status==='denied'){
+    identityHTML=`<div class="claim-section" style="margin-top:0;margin-bottom:24px;">
+      <div class="claim-section-title">🔗 Claim Denied</div>
+      <div class="claim-status">
+        <div class="claim-status-dot" style="background:var(--red);box-shadow:0 0 8px rgba(255,71,87,.5);"></div>
+        <div class="claim-status-text">❌ Your claim was denied</div>
+      </div>
+      <p style="font-size:12px;color:var(--muted2);margin-top:8px;margin-bottom:14px;">Contact an admin if you believe this is a mistake, or try again below.</p>
+      ${renderClaimForm()}
+    </div>`;
+  } else {
+    identityHTML=`<div class="claim-section" style="margin-top:0;margin-bottom:24px;">
+      <div class="claim-section-title">🔗 Are You On The List?</div>
+      <p class="claim-section-sub">Select your profile to request identity verification. Admins will confirm it's really you — then you get a ✓ badge and prize eligibility.</p>
+      ${renderClaimForm()}
+    </div>`;
+  }
+
+  // Join request section (only shown if not yet approved)
+  let joinHTML='';
   if(existing){
     const statusColor=existing.status==='pending'?'var(--gold)':existing.status==='approved'?'var(--green)':'var(--red)';
-    const statusText=existing.status==='pending'?'⏳ Pending Review':existing.status==='approved'?'✅ Approved':'❌ Rejected';
-    g('content').innerHTML=`<div class="req-page"><div class="req-already">
-      <span style="font-size:44px;display:block;margin-bottom:14px;">📋</span>
-      <div style="font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;margin-bottom:8px;">Request Submitted</div>
-      <p style="color:var(--muted2);line-height:1.7;margin-bottom:16px;">You've already submitted a request for <b style="color:var(--text)">${esc(existing.name)}</b>.</p>
-      <div style="display:inline-block;background:var(--bg3);border:1px solid var(--border2);border-radius:8px;padding:10px 20px;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:${statusColor};">${statusText}</div>
-    </div></div>`;
-    return;
-  }
-  g('content').innerHTML=`<div class="req-page">
-    <div class="req-header">
-      <span class="req-header-icon">🙋</span>
-      <div class="req-title">Join The Tier List</div>
-      <p class="req-sub">Submit your profile for review. Admins will approve or reject it.</p>
-    </div>
-    <div class="req-card">
-      <div class="req-form" id="req-form">
-        <div class="req-fg"><label>Your Name *</label><input id="req-name" placeholder="John Smith" maxlength="40" value="${esc(currentUser.displayName||'')}"></div>
-        <div class="req-fg"><label>Nickname / Title</label><input id="req-nick" placeholder="The Legend" maxlength="30"></div>
-        <div class="req-fg"><label>Bio / Why You Deserve a Spot</label><textarea id="req-bio" placeholder="Tell us why you should be ranked…" maxlength="300" rows="3"></textarea></div>
-        <div class="req-fg">
-          <label>Profile Photo</label>
-          <div class="req-photo-preview" id="req-photo-prev">📷</div>
-          <input type="file" id="req-photo-file" accept="image/*" onchange="handleReqPhoto(event)" style="font-size:11px;color:var(--muted2);margin-top:4px;">
-          <input type="hidden" id="req-photo-data">
-          <div style="font-size:10px;color:var(--muted);margin-top:4px;">Or paste a URL:</div>
-          <input id="req-photo-url" placeholder="https://..." oninput="previewReqPhotoUrl()">
+    const statusText=existing.status==='pending'?'⏳ Pending Review':existing.status==='approved'?'✅ Approved — Check the rankings!':'❌ Rejected';
+    joinHTML=`<div style="padding-top:24px;border-top:1px solid var(--border);">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:900;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px;">Join Request</div>
+      <div class="req-card"><div class="req-already" style="padding:16px 0 0;">
+        <span style="font-size:36px;display:block;margin-bottom:10px;">📋</span>
+        <p style="color:var(--muted2);line-height:1.7;margin-bottom:12px;">Request submitted for <b style="color:var(--text)">${esc(existing.name)}</b>.</p>
+        <div style="display:inline-block;background:var(--bg3);border:1px solid var(--border2);border-radius:8px;padding:8px 18px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:${statusColor};">${statusText}</div>
+      </div></div>
+    </div>`;
+  } else {
+    joinHTML=`<div style="padding-top:24px;border-top:1px solid var(--border);">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:900;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;">Not On The List Yet?</div>
+      <p style="font-size:13px;color:var(--muted2);line-height:1.6;margin-bottom:16px;">Submit your profile for review. Admins will approve or reject it.</p>
+      <div class="req-card">
+        <div class="req-form" id="req-form">
+          <div class="req-fg"><label>Your Name *</label><input id="req-name" placeholder="John Smith" maxlength="40" value="${esc(currentUser.displayName||'')}"></div>
+          <div class="req-fg"><label>Nickname / Title</label><input id="req-nick" placeholder="The Legend" maxlength="30"></div>
+          <div class="req-fg"><label>Bio / Why You Deserve a Spot</label><textarea id="req-bio" placeholder="Tell us why you should be ranked…" maxlength="300" rows="3"></textarea></div>
+          <div class="req-fg">
+            <label>Profile Photo</label>
+            <div class="req-photo-preview" id="req-photo-prev">📷</div>
+            <input type="file" id="req-photo-file" accept="image/*" onchange="handleReqPhoto(event)" style="font-size:11px;color:var(--muted2);margin-top:4px;">
+            <input type="hidden" id="req-photo-data">
+            <div style="font-size:10px;color:var(--muted);margin-top:4px;">Or paste a URL:</div>
+            <input id="req-photo-url" placeholder="https://..." oninput="previewReqPhotoUrl()">
+          </div>
+          <div class="req-fg"><label>Avatar Color</label><div id="req-swatches" style="display:flex;gap:6px;flex-wrap:wrap;margin-top:4px;"></div><input type="hidden" id="req-color" value="${COLORS[0]}"></div>
+          <div id="req-error" style="color:var(--red);font-size:12px;display:none;"></div>
+          <button class="req-submit-btn" id="req-submit-btn" onclick="submitJoinRequest()">Submit Request ⚡</button>
         </div>
-        <div class="req-fg"><label>Avatar Color</label><div id="req-swatches" style="display:flex;gap:6px;flex-wrap:wrap;margin-top:4px;"></div><input type="hidden" id="req-color" value="${COLORS[0]}"></div>
-        <div id="req-error" style="color:var(--red);font-size:12px;display:none;"></div>
-        <button class="req-submit-btn" id="req-submit-btn" onclick="submitJoinRequest()">Submit Request ⚡</button>
       </div>
+    </div>`;
+  }
+
+  g('content').innerHTML=`<div class="req-page">
+    <div class="req-header" style="margin-bottom:20px;">
+      <span class="req-header-icon">🔗</span>
+      <div class="req-title">Link & Join</div>
+      <p class="req-sub">Verify your identity or request to join the tier list.</p>
     </div>
-    ${renderIdentitySection()}
+    ${identityHTML}
+    ${joinHTML}
   </div>`;
+
+  // Init color swatches if join form is showing
   const sw=g('req-swatches');
   if(sw)sw.innerHTML=COLORS.map((c,i)=>`<div style="width:22px;height:22px;border-radius:50%;background:${c};cursor:pointer;border:2px solid ${i===0?'#fff':'transparent'};transition:transform .15s,border-color .15s;" onclick="pickReqColor('${c}',this)" onmouseover="this.style.transform='scale(1.2)'" onmouseout="if(this.style.borderColor!='rgb(255, 255, 255)')this.style.transform=''"></div>`).join('');
+
+  // Auto-select profile if navigated from modal
+  afterRenderClaimForm();
 }
 
 /* ══ MODAL ══ */
@@ -1112,7 +1212,7 @@ function buildModal(p){
   const heroStyle=p.photo?`background-image:url('${p.photo}');`:`background:${p.color||COLORS[0]};`;
   const avInner=p.photo?`<img src="${p.photo}" style="width:100%;height:100%;object-fit:cover;">`:`<span>${p.name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase()}</span>`;
   const trl=(p.traits||[]).map(t=>`<span class="mtrait">${esc(t)}</span>`).join('');
-  const bars=[{label:'Alpha',val:p.alpha||0,color:'#ff8c00'},{label:'Clout',val:p.clout||0,color:'#5865f2'},{label:'Rizz',val:p.rizz||0,color:'#e91e63'}]
+  const bars=[{label:'Alpha',val:p.alpha||0,color:'#ff8c00'},{label:'Aura',val:p.clout||0,color:'#5865f2'},{label:'Rizz',val:p.rizz||0,color:'#e91e63'}]
     .map(s=>`<div class="mbar-row"><div class="mbar-label">${s.label}</div><div class="mbar-wrap"><div class="mbar-fill" style="width:${s.val}%;background:${s.color}"></div></div><div class="mbar-val">${s.val}</div></div>`).join('');
   const newsHTML=pNews.length?pNews.slice(0,8).map(n=>`<div class="modal-news-item"><span class="modal-news-icon">${n.type==='alert'?'🚨':'📌'}</span><span class="modal-news-text">${esc(n.headline)}</span><span class="modal-news-time">${n.ts?timeAgo(n.ts):''}</span></div>`).join(''):`<div class="modal-news-empty">No news featuring this player yet.</div>`;
   const pComments=(comments[p.id]||[]);
@@ -1123,15 +1223,18 @@ function buildModal(p){
   const verified=isVerified(p.id);
   const verBadge=verified?getVerifiedBadge():'';
 
-  // Peak rank display
+  // Peak rank display — own row for visibility
   const peakRankHTML = p.peakRank
-    ? `<span class="peak-rank-badge">🏆 Peak #${p.peakRank}</span>`
+    ? `<div class="peak-rank-row"><span class="peak-rank-badge">👑 All-Time Peak: #${p.peakRank}</span><span style="font-size:10px;color:var(--muted);font-family:'Barlow Condensed',sans-serif;">${p.peakRankTs?'reached '+timeAgo(p.peakRankTs):''}</span></div>`
     : '';
 
-  // Linked user display
+  // Linked user display + verification incentive
   const linkedClaim = claimRequests.find(c=>c.profileId===p.id&&c.status==='verified');
+  const verifiedPerk = verified
+    ? `<div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--green);font-family:'Barlow Condensed',sans-serif;margin-top:6px;"><span>✓</span><span>Identity verified — eligible for prize payouts &amp; exclusive perks</span></div>`
+    : `<div style="margin-top:8px;"><button onclick="openClaimForProfile('${p.id}')" style="display:inline-flex;align-items:center;gap:7px;background:rgba(88,101,242,.1);border:1px solid rgba(88,101,242,.3);color:#818cf8;padding:7px 14px;border-radius:6px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;letter-spacing:.5px;cursor:pointer;transition:all .15s;" onmouseover="this.style.background='rgba(88,101,242,.18)'" onmouseout="this.style.background='rgba(88,101,242,.1)'">🔗 This is me — verify my identity</button></div>`;
   const linkedUserLine = linkedClaim
-    ? `<div style="font-size:11px;color:var(--muted2);margin-top:4px;font-family:'Barlow Condensed',sans-serif;">🔗 Linked: ${esc(linkedClaim.displayName||linkedClaim.email||'')}</div>`
+    ? `<div style="font-size:11px;color:var(--muted2);margin-top:2px;font-family:'Barlow Condensed',sans-serif;">Linked: ${esc(linkedClaim.displayName||linkedClaim.email||'')}</div>`
     : '';
 
   g('modal-inner').innerHTML=`
@@ -1142,11 +1245,12 @@ function buildModal(p){
       <div class="mn-tier">
         <span class="tbadge"><span class="tpip" style="background:${ti.color}"></span><span style="color:${ti.color};font-size:13px;">${ti.label}</span></span>
         ${ovNote}
-        ${peakRankHTML}
       </div>
+      ${verifiedPerk}
       ${linkedUserLine}
     </div>
-    <div class="mbody">${p.bio?`<div class="mbio">"${esc(p.bio)}"</div>`:''}<div class="mstats-big"><div class="ms"><div class="msl">Score</div><div class="msv" style="color:${ti.color}">${p.score||0}</div></div><div class="ms"><div class="msl">Alpha</div><div class="msv" style="color:#ff8c00">${p.alpha||0}</div></div><div class="ms"><div class="msl">Clout</div><div class="msv" style="color:#5865f2">${p.clout||0}</div></div><div class="ms"><div class="msl">Rizz</div><div class="msv" style="color:#e91e63">${p.rizz||0}</div></div></div><div class="mbar-section"><div class="mbar-title">Breakdown</div>${bars}</div>${trl?`<div class="mtraits">${trl}</div>`:''}</div>
+    ${peakRankHTML}
+    <div class="mbody">${p.bio?`<div class="mbio">"${esc(p.bio)}"</div>`:''}<div class="mstats-big"><div class="ms"><div class="msl">Score</div><div class="msv" style="color:${ti.color}">${p.score||0}</div></div><div class="ms"><div class="msl">Alpha</div><div class="msv" style="color:#ff8c00">${p.alpha||0}</div></div><div class="ms"><div class="msl">Aura</div><div class="msv" style="color:#5865f2">${p.clout||0}</div></div><div class="ms"><div class="msl">Rizz</div><div class="msv" style="color:#e91e63">${p.rizz||0}</div></div></div><div class="mbar-section"><div class="mbar-title">Breakdown</div>${bars}</div>${trl?`<div class="mtraits">${trl}</div>`:''}</div>
     ${rankupSectionHTML(p)}
     <div class="vote-section"><div class="vote-label">Verdict</div><div class="vote-btns"><button class="vote-btn ${pv.myVote==='over'?'voted-over':''}" id="vbtn-over" onclick="castVote('${p.id}','over')"><span class="vicon">🔥</span><span>Overrated</span><span class="vote-count" id="vc-over">${pv.over||0}</span></button><button class="vote-btn ${pv.myVote==='under'?'voted-under':''}" id="vbtn-under" onclick="castVote('${p.id}','under')"><span class="vicon">💎</span><span>Underdog</span><span class="vote-count" id="vc-under">${pv.under||0}</span></button></div><div class="vote-tally" id="vtally">${total>0?`🔥 ${overPct}% · 💎 ${100-overPct}%<br><span style="font-size:9px;">${total} vote${total!==1?'s':''}</span>`:'<span style="font-size:10px;">No votes yet</span>'}</div></div>
     <div class="modal-tabs"><div class="modal-tab ${currentModalTab==='news'?'active':''}" onclick="switchModalTab('news',this)">🗞 News</div><div class="modal-tab ${currentModalTab==='comments'?'active':''}" onclick="switchModalTab('comments',this)">💬 Comments (${pComments.length})</div></div>
@@ -1351,7 +1455,7 @@ function renderDev(){
         <div class="dcard-t" id="form-lbl">Add Profile</div>
         <input type="hidden" id="eid">
         <div class="frow"><div class="fg"><label>Name *</label><input id="fn" placeholder="John Smith"></div><div class="fg"><label>Nickname / Title</label><input id="fnick" placeholder="The Goat"></div></div>
-        <div class="frow"><div class="fg"><label>Alpha (0–100)</label><input type="number" id="falpha" value="50" min="0" max="100" oninput="updateAutoScore()"></div><div class="fg"><label>Clout (0–100)</label><input type="number" id="fclout" value="50" min="0" max="100" oninput="updateAutoScore()"></div></div>
+        <div class="frow"><div class="fg"><label>Alpha (0–100)</label><input type="number" id="falpha" value="50" min="0" max="100" oninput="updateAutoScore()"></div><div class="fg"><label>Aura (0–100)</label><input type="number" id="fclout" value="50" min="0" max="100" oninput="updateAutoScore()"></div></div>
         <div class="frow"><div class="fg"><label>Rizz (0–100)</label><input type="number" id="frizz" value="50" min="0" max="100" oninput="updateAutoScore()"></div><div class="fg"><label>Overall Score</label><input type="text" id="fscore" value="50" readonly style="opacity:.6;cursor:default;"><div class="auto-score-note">Auto-calculated</div></div></div>
         <div class="fg"><label>Bio</label><textarea id="fbio" placeholder="Known for..."></textarea></div>
         <div class="fg"><label>Profile Picture</label>
